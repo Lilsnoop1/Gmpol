@@ -7,6 +7,7 @@ import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
@@ -17,12 +18,13 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route path="/products/:id/:comesfrom?" element={<ProductDetail />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
+        <Footer/>
       </div>
     </Router>
   );
