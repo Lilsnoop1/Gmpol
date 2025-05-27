@@ -45,6 +45,7 @@ const Products: React.FC = () => {
 
   useEffect(() => {
     const fetchMachines = async () => {
+      setLoading(true);
       try {
         if(activeTab=='machines'){
            const response = await axios.get<ProductMachines[]>(`${prod_url}/api/machines`, {
@@ -75,6 +76,11 @@ const Products: React.FC = () => {
     };
 
     fetchMachines();
+  }, [activeTab]);
+
+  useEffect(() => {
+    setSearchTerm('');
+    setCategoryFilter('');
   }, [activeTab]);
 
   const filteredProducts = activeTab === 'instruments'
