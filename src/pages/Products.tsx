@@ -181,7 +181,7 @@ const Products: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((item) =>
           activeTab === 'machines' ? (
-            <ProductCard key={item.name} product={item} />
+            <ProductCard key={item.name} product={item as ProductData} />
           ) : (
             <InstrumentCard key={item.url} file={item} />
           )
