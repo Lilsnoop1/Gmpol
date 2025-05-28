@@ -29,8 +29,8 @@ interface ProductData {
   slug: string;
 }
 
-// const dev_url=import.meta.env.VITE_PROD_URL;
-const dev_url=import.meta.env.VITE_DEV_URL;
+const prod_url=import.meta.env.VITE_PROD_URL;
+// const prod_url=import.meta.env.VITE_DEV_URL;
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductMachines[]>([]);
@@ -48,12 +48,12 @@ const Products: React.FC = () => {
       setLoading(true);
       try {
         if(activeTab=='machines'){
-           const response = await axios.get<ProductMachines[]>(`${dev_url}/api/machines`, {
+           const response = await axios.get<ProductMachines[]>(`${prod_url}/api/machines`, {
             headers: {
               'Content-Type': 'application/json',
             },
           });
-          const metadataResponse = await axios.get<{ machines: ProductData[] }>(`${dev_url}/api/machines/descriptions`, {
+          const metadataResponse = await axios.get<{ machines: ProductData[] }>(`${prod_url}/api/machines/descriptions`, {
             headers: {
               'Content-Type': 'application/json',
             }
@@ -62,7 +62,7 @@ const Products: React.FC = () => {
           setProductDescriptions(metadataResponse.data.machines || []);
           // console.log(productDescriptions)
         }else{
-           const response = await axios.get<InstrumentData[]>(`${dev_url}/api/instruments`, {
+           const response = await axios.get<InstrumentData[]>(`${prod_url}/api/instruments`, {
             headers: {
               'Content-Type': 'application/json',
             },
