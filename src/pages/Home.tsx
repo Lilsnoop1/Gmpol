@@ -1,28 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon } from 'lucide-react';
+import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon, GlobeIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Home: React.FC = () => {
   return <div className="w-full">
-      {/* Hero Section with Gateway Arch Background */}
-      <section className="relative min-h-[85vh] flex items-center">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-contain bg-no-repeat" style={{
-            backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg')`,
-            backgroundPosition: 'right center'
-          }}>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/70 to-transparent"></div>
-          </div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="md:w-1/2">
-            <div className="space-y-8">
+      {/* Hero Section with Split Layout */}
+      <section className="min-h-[85vh] flex items-center">
+        <div className="w-full flex flex-col md:flex-row">
+          {/* Left side - Content */}
+          <div className="w-full md:w-1/2 bg-blue-900 p-12 md:p-16 flex items-center">
+            <div className="max-w-xl mx-auto space-y-8">
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20"
+                className="space-y-8"
               >
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
                   Your Trusted Source for Medical Equipment
@@ -67,158 +60,105 @@ const Home: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="text-center p-6 rounded-lg transform hover:-translate-y-1 transition duration-300">
-              <div className="text-4xl font-bold text-blue-600 mb-2">8+</div>
-              <div className="text-gray-600">Years of Experience</div>
-            </div>
-            <div className="text-center p-6 rounded-lg transform hover:-translate-y-1 transition duration-300">
-              <div className="text-4xl font-bold text-blue-600 mb-2">1000+</div>
-              <div className="text-gray-600">Products Delivered</div>
-            </div>
-            <div className="text-center p-6 rounded-lg transform hover:-translate-y-1 transition duration-300">
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-gray-600">Happy Clients</div>
-            </div>
-            <div className="text-center p-6 rounded-lg transform hover:-translate-y-1 transition duration-300">
-              <div className="text-4xl font-bold text-blue-600 mb-2">20+</div>
-              <div className="text-gray-600">Global Partners</div>
+          
+          {/* Right side - Image */}
+          <div className="w-full md:w-1/2 relative min-h-[400px] md:min-h-[85vh]">
+            <div className="absolute inset-0 bg-cover bg-center" style={{
+              backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg')`
+            }}>
+              <div className="absolute inset-0 bg-gradient-to-l from-blue-900/30 to-transparent"></div>
             </div>
           </div>
         </div>
       </section>
-      {/* Features Section */}
-      <section className="py-20 bg-white">
+      {/* Why Choose Us Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose GMPOL?
-            </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose GMPOL?</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              We combine global expertise with local knowledge to provide the best medical equipment solutions
+            </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                <ShieldCheckIcon className="h-8 w-8 text-blue-600" />
+                <Building2Icon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Quality Assurance
-              </h3>
+              <h3 className="text-xl font-semibold text-center mb-4">Dual Presence</h3>
               <p className="text-gray-600 text-center">
-                All our medical parts undergo rigorous quality checks and
-                testing procedures.
+                Strategic locations in both Pakistan and USA for efficient global distribution
               </p>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                <TruckIcon className="h-8 w-8 text-blue-600" />
+                <GraduationCapIcon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Global Sourcing
-              </h3>
+              <h3 className="text-xl font-semibold text-center mb-4">Expert Knowledge</h3>
               <p className="text-gray-600 text-center">
-                Access to a worldwide network of trusted medical equipment
-                suppliers.
+                Deep understanding of medical equipment requirements and specifications
               </p>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                <BadgeCheckIcon className="h-8 w-8 text-blue-600" />
+                <CheckCircleIcon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Certified Parts
-              </h3>
+              <h3 className="text-xl font-semibold text-center mb-4">Quality Verified</h3>
               <p className="text-gray-600 text-center">
-                International standard certifications for all medical equipment.
+                All equipment undergoes thorough inspection and meets international standards
               </p>
             </div>
-            <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition duration-300 border border-gray-100">
+            <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
-                <HeartPulseIcon className="h-8 w-8 text-blue-600" />
+                <HeartHandshakeIcon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">
-                Healthcare Focus
-              </h3>
+              <h3 className="text-xl font-semibold text-center mb-4">Dedicated Support</h3>
               <p className="text-gray-600 text-center">
-                Dedicated to supporting healthcare providers with reliable
-                solutions.
+                Personalized assistance and after-sales support for all our clients
               </p>
             </div>
           </div>
         </div>
       </section>
-      {/* Testimonials Section */}
-      {/* <section className="py-20 bg-white">
+      {/* Shipping Partners Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              What Our Clients Say
-            </h2>
-            <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
+          <div className="text-center mb-12">
+            <h2 className="text-2xl font-semibold text-gray-900">Our Shipping Partners</h2>
+            <p className="mt-2 text-gray-600">Reliable worldwide shipping through trusted carriers</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> */}
-            {/* Testimonial 1 */}
-            {/* <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-              </div>
-              <p className="text-gray-600 mb-6 italic">
-                "Outstanding quality and service. GMPOL has been our trusted
-                supplier for medical equipment for over 3 years now."
-              </p>
-              <div>
-                <p className="font-semibold text-gray-900">Dr. Sarah Ahmed</p>
-                <p className="text-gray-500">Chief of Surgery, City Hospital</p>
-              </div>
-            </div> */}
-            {/* Testimonial 2 */}
-            {/* <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-              </div>
-              <p className="text-gray-600 mb-6 italic">
-                "Reliable equipment and excellent customer support. They
-                understand our needs and deliver consistently."
-              </p>
-              <div>
-                <p className="font-semibold text-gray-900">Dr. Khalid Rahman</p>
-                <p className="text-gray-500">Medical Director, Care Center</p>
-              </div>
-            </div> */}
-            {/* Testimonial 3 */}
-            {/* <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
-              <div className="flex items-center mb-4">
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-                <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
-              </div>
-              <p className="text-gray-600 mb-6 italic">
-                "GMPOL's commitment to quality and timely delivery has made them
-                our go-to supplier for medical equipment."
-              </p>
-              <div>
-                <p className="font-semibold text-gray-900">Dr. Fatima Khan</p>
-                <p className="text-gray-500">CEO, Health Solutions</p>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">
+            <div className="p-6 hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://cdn.worldvectorlogo.com/logos/dhl-express.svg" 
+                alt="DHL Express" 
+                className="h-16 object-contain"
+              />
+            </div>
+            <div className="p-6 hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://cdn.worldvectorlogo.com/logos/united-states-postal-service-logo.svg" 
+                alt="USPS" 
+                className="h-16 object-contain"
+              />
+            </div>
+            <div className="p-6 hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://cdn.worldvectorlogo.com/logos/fedex-express-6.svg" 
+                alt="FedEx" 
+                className="h-16 object-contain"
+              />
+            </div>
+            <div className="p-6 hover:scale-105 transition-transform duration-300">
+              <img 
+                src="https://cdn.worldvectorlogo.com/logos/ups-logo-1.svg" 
+                alt="UPS" 
+                className="h-16 object-contain"
+              />
             </div>
           </div>
         </div>
-      </section> */}
+      </section>
       {/* Enhanced Call to Action */}
       <section className="relative py-20 bg-blue-700">
         <div className="absolute inset-0 bg-blue-800 opacity-50"></div>

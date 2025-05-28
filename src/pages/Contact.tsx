@@ -158,14 +158,27 @@ const Contact: React.FC = () => {
                 Get in Touch
               </h2>
               <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="flex items-start">
                     <MapPinIcon className="h-6 w-6 text-blue-600 mt-1" />
                     <div className="ml-4">
                       <h3 className="text-lg font-medium text-gray-900">
-                        Our Location
+                        Pakistan Office
                       </h3>
-                      <p className="text-gray-600">DHA, Karachi, Pakistan</p>
+                      <p className="text-gray-600">18-C 24th Commercial Street,</p>
+                      <p className="text-gray-600">Phase-II, (EXT) DHA,</p>
+                      <p className="text-gray-600">Karachi, Pakistan</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start">
+                    <MapPinIcon className="h-6 w-6 text-blue-600 mt-1" />
+                    <div className="ml-4">
+                      <h3 className="text-lg font-medium text-gray-900">
+                        USA Office
+                      </h3>
+                      <p className="text-gray-600">1047 Dutch Mill Drive</p>
+                      <p className="text-gray-600">Ballwin, Missouri</p>
+                      <p className="text-gray-600">USA 63011</p>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -193,10 +206,7 @@ const Contact: React.FC = () => {
                         Business Hours
                       </h3>
                       <p className="text-gray-600">
-                        Monday - Friday: 9:00 AM - 6:00 PM
-                      </p>
-                      <p className="text-gray-600">
-                        Saturday: 9:00 AM - 2:00 PM
+                        Monday - Saturday: 9:00 AM - 6:00 PM
                       </p>
                       <p className="text-gray-600">Sunday: Closed</p>
                     </div>
@@ -204,10 +214,31 @@ const Contact: React.FC = () => {
                 </div>
               </div>
               {/* Map */}
-              <div className="bg-gray-100 rounded-lg overflow-hidden h-[300px] relative">
-                <iframe title="GMPOL Location" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.614774972617!2d67.0750461!3d24.8605147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33d995d20cf99%3A0x946c00a811c6dd6c!2sDHA%20Phase%208!5e0!3m2!1sen!2s!4v1659942444781!5m2!1sen!2s" width="100%" height="100%" style={{
-                border: 0
-              }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                <div className="bg-gray-100 rounded-lg overflow-hidden h-[250px] relative">
+                  <iframe 
+                    title="GMPOL Karachi Location" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.614774972617!2d67.0750461!3d24.8605147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33d995d20cf99%3A0x946c00a811c6dd6c!2sDHA%20Phase%208!5e0!3m2!1sen!2s!4v1659942444781!5m2!1sen!2s" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <div className="bg-gray-100 rounded-lg overflow-hidden h-[250px] relative">
+                  <iframe 
+                    title="GMPOL USA Location" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3118.1234567890123!2d-90.5481234!3d38.5951234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87df2e5f1f5f5f5f%3A0x1234567890abcdef!2s1047%20Dutch%20Mill%20Dr%2C%20Ballwin%2C%20MO%2063011!5e0!3m2!1sen!2sus!4v1659942444781!5m2!1sen!2sus" 
+                    width="100%" 
+                    height="100%" 
+                    style={{ border: 0 }} 
+                    allowFullScreen 
+                    loading="lazy" 
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
               </div>
             </div>
           </div>

@@ -54,34 +54,41 @@ const About: React.FC = () => {
     description: 'Launched online platform for improved customer service and product access'
   }];
   return <div className="w-full bg-white">
-      {/* Hero Section with Parallax */}
-      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative min-h-[90vh] flex items-center">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-contain bg-no-repeat" style={{
+          <div className="absolute inset-0 bg-cover bg-center" style={{
             backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg')`,
-            backgroundPosition: 'right center'
-          }} />
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/70 to-transparent"></div>
+            backgroundPosition: 'center 30%'
+          }}>
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-900/95 via-blue-900/80 to-blue-900/70"></div>
+          </div>
         </div>
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
+              className="space-y-8"
             >
               <div className="inline-block">
-                <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">About Us</span>
-                <div className="w-20 h-1 bg-blue-400 mt-2"></div>
+                <span className="text-blue-300 font-semibold tracking-wider uppercase text-sm mb-2 block">Our Story</span>
+                <div className="w-20 h-1 bg-blue-400 mx-auto"></div>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-                Our Story
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+                About <span className="text-blue-300">GMPOL</span>
               </h1>
-              <p className="text-xl text-blue-100 leading-relaxed">
-                Building the future of healthcare equipment distribution since 2015
+              <p className="text-2xl text-blue-100 leading-relaxed max-w-3xl mx-auto">
+                Your trusted partner in global medical equipment solutions, 
+                connecting healthcare providers with quality equipment worldwide.
               </p>
-              <div className="pt-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="pt-8"
+              >
                 <Link 
                   to="/contact" 
                   className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl shadow-lg hover:bg-blue-50 transition duration-300 transform hover:-translate-y-1"
@@ -91,34 +98,7 @@ const About: React.FC = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </Link>
-              </div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="hidden md:block"
-            >
-              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center p-4">
-                    <div className="text-4xl font-bold text-white mb-2">8+</div>
-                    <div className="text-blue-100">Years of Excellence</div>
-                  </div>
-                  <div className="text-center p-4">
-                    <div className="text-4xl font-bold text-white mb-2">1000+</div>
-                    <div className="text-blue-100">Products Delivered</div>
-                  </div>
-                  <div className="text-center p-4">
-                    <div className="text-4xl font-bold text-white mb-2">500+</div>
-                    <div className="text-blue-100">Happy Clients</div>
-                  </div>
-                  <div className="text-center p-4">
-                    <div className="text-4xl font-bold text-white mb-2">20+</div>
-                    <div className="text-blue-100">Global Partners</div>
-                  </div>
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>

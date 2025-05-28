@@ -1,65 +1,124 @@
 import React from 'react';
-import { PhoneIcon, MapPinIcon, MailIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from 'lucide-react';
+import DotmedButton from './DotmedButton';
+
 const Footer: React.FC = () => {
-  return <footer className="bg-gray-800 text-white">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+  return (
+    <footer className="bg-gray-900 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
           <div>
-            <h2 className="text-2xl font-bold mb-4">GMPOL</h2>
-            <p className="text-gray-300">
-              Global Medical Parts Online - Your trusted source for quality used
-              medical equipment and parts.
+            <h3 className="text-lg font-semibold mb-4">GMPOL</h3>
+            <p className="text-gray-400 mb-4">
+              Your trusted source for high-quality medical equipment and parts.
             </p>
+            <div className="flex space-x-4">
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <FacebookIcon className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <TwitterIcon className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <InstagramIcon className="h-5 w-5" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <LinkedinIcon className="h-5 w-5" />
+              </a>
+            </div>
           </div>
+
+          {/* Quick Links */}
           <div>
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-gray-300 hover:text-white">
+                <Link to="/" className="text-gray-400 hover:text-white transition-colors">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/products" className="text-gray-300 hover:text-white">
-                  Products
-                </a>
-              </li>
-              <li>
-                <a href="/about" className="text-gray-300 hover:text-white">
+                <Link to="/about" className="text-gray-400 hover:text-white transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/contact" className="text-gray-300 hover:text-white">
+                <Link to="/products" className="text-gray-400 hover:text-white transition-colors">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
+
+          {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Information</h3>
-            <div className="space-y-3">
-              <div className="flex items-center">
-                <MapPinIcon className="h-5 w-5 mr-2 text-blue-400" />
-                <span>DHA, Karachi, Pakistan</span>
+            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
+            <ul className="space-y-2 text-gray-400">
+              <li>Pakistan Office:</li>
+              <li>18-C 24th Commercial Street,</li>
+              <li>Phase-II, (EXT) DHA,</li>
+              <li>Karachi, Pakistan</li>
+              <li className="mt-4">USA Office:</li>
+              <li>1047 Dutch Mill Drive</li>
+              <li>Ballwin, Missouri</li>
+              <li>USA 63011</li>
+            </ul>
+          </div>
+
+          {/* Payment Methods */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Payment Methods</h3>
+            <div className="flex flex-col space-y-4">
+              <div className="flex items-center space-x-4">
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/American_Express_logo_%282018%29.svg/2560px-American_Express_logo_%282018%29.svg.png" 
+                  alt="American Express" 
+                  className="h-8 object-contain"
+                />
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/2560px-Visa_Inc._logo.svg.png" 
+                  alt="Visa" 
+                  className="h-8 object-contain"
+                />
+                <img 
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/2560px-Mastercard-logo.svg.png" 
+                  alt="Mastercard" 
+                  className="h-8 object-contain"
+                />
               </div>
-              <div className="flex items-center">
-                <PhoneIcon className="h-5 w-5 mr-2 text-blue-400" />
-                <span>033621434690</span>
-              </div>
-              <div className="flex items-center">
-                <MailIcon className="h-5 w-5 mr-2 text-blue-400" />
-                <span>info@gmpol.com</span>
-              </div>
+              <p className="text-gray-400 text-sm">
+                Secure payments through trusted payment processors
+              </p>
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-700">
-          <p className="text-center text-gray-400">
-            &copy; {new Date().getFullYear()} GMPOL. All rights reserved.
-          </p>
+
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © {new Date().getFullYear()} GMPOL. All rights reserved.
+            </p>
+            <div className="flex space-x-6 mt-4 md:mt-0">
+              <Link to="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
+                Terms of Service
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </footer>;
+      <DotmedButton />
+    </footer>
+  );
 };
+
 export default Footer;
