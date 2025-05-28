@@ -1,34 +1,70 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon } from 'lucide-react';
+import { motion } from 'framer-motion';
+
 const Home: React.FC = () => {
   return <div className="w-full">
-      {/* Hero Section with Background Image */}
+      {/* Hero Section with Gateway Arch Background */}
       <section className="relative min-h-[85vh] flex items-center">
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: `url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2091&q=80')`
-      }}>
-          <div className="absolute inset-0 bg-blue-900/75"></div>
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-contain bg-no-repeat" style={{
+            backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg')`,
+            backgroundPosition: 'right center'
+          }}>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/70 to-transparent"></div>
+          </div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-          <div className="md:w-2/3">
-            <div className="bg-white/10 backdrop-blur-lg rounded-lg p-6 md:p-8 inline-block mb-6">
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                Your Trusted Source for Medical Equipment
-              </h1>
-              <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                Discover high-quality medical equipment and parts, sourced
-                globally and delivered with excellence. Empowering healthcare
-                through reliable solutions.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/products" className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-md shadow-lg hover:bg-blue-50 transition duration-300 text-center">
-                Browse Products
-              </Link>
-              <Link to="/contact" className="inline-block bg-transparent text-white border-2 border-white font-semibold px-8 py-4 rounded-md hover:bg-white/10 transition duration-300 text-center">
-                Contact Us
-              </Link>
+          <div className="md:w-1/2">
+            <div className="space-y-8">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20"
+              >
+                <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+                  Your Trusted Source for Medical Equipment
+                </h1>
+                <p className="text-xl text-blue-100 mb-8 leading-relaxed">
+                  Discover high-quality medical equipment and parts, sourced
+                  globally and delivered with excellence. Empowering healthcare
+                  through reliable solutions.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link 
+                    to="/products" 
+                    className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 transition duration-300 text-center transform hover:-translate-y-1"
+                  >
+                    Browse Products
+                  </Link>
+                  <Link 
+                    to="/contact" 
+                    className="inline-block bg-transparent text-white border-2 border-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition duration-300 text-center transform hover:-translate-y-1"
+                  >
+                    Contact Us
+                  </Link>
+                </div>
+              </motion.div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white mb-1">8+</div>
+                  <div className="text-blue-100 text-sm">Years Experience</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white mb-1">1000+</div>
+                  <div className="text-blue-100 text-sm">Products Delivered</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white mb-1">500+</div>
+                  <div className="text-blue-100 text-sm">Happy Clients</div>
+                </div>
+                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                  <div className="text-3xl font-bold text-white mb-1">20+</div>
+                  <div className="text-blue-100 text-sm">Global Partners</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -117,7 +153,7 @@ const Home: React.FC = () => {
         </div>
       </section>
       {/* Testimonials Section */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -125,9 +161,9 @@ const Home: React.FC = () => {
             </h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8"> */}
             {/* Testimonial 1 */}
-            <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
+            {/* <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
               <div className="flex items-center mb-4">
                 <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
                 <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
@@ -143,9 +179,9 @@ const Home: React.FC = () => {
                 <p className="font-semibold text-gray-900">Dr. Sarah Ahmed</p>
                 <p className="text-gray-500">Chief of Surgery, City Hospital</p>
               </div>
-            </div>
+            </div> */}
             {/* Testimonial 2 */}
-            <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
+            {/* <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
               <div className="flex items-center mb-4">
                 <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
                 <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
@@ -161,9 +197,9 @@ const Home: React.FC = () => {
                 <p className="font-semibold text-gray-900">Dr. Khalid Rahman</p>
                 <p className="text-gray-500">Medical Director, Care Center</p>
               </div>
-            </div>
+            </div> */}
             {/* Testimonial 3 */}
-            <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
+            {/* <div className="bg-gray-50 p-8 rounded-xl shadow-lg">
               <div className="flex items-center mb-4">
                 <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
                 <StarIcon className="h-5 w-5 text-yellow-400 fill-current" />
@@ -182,7 +218,7 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Enhanced Call to Action */}
       <section className="relative py-20 bg-blue-700">
         <div className="absolute inset-0 bg-blue-800 opacity-50"></div>

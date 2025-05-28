@@ -32,7 +32,7 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="GMPOL" className="h-10 w-auto" />
+            <img src="/logo.png" alt="GMPOL" className="h-10 w-auto" />
             <span className={`text-2xl font-bold ${
               scrolled ? 'text-blue-600' : 'text-white'
             } transition-colors duration-300`}>

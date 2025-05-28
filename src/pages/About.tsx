@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GlobeIcon, AwardIcon, UsersIcon, ShieldCheckIcon, ClipboardCheckIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon, TargetIcon, CheckCircle2Icon } from 'lucide-react';
+import { Link } from 'react-router-dom';
 const About: React.FC = () => {
   const fadeIn = {
     initial: {
@@ -54,38 +55,72 @@ const About: React.FC = () => {
   }];
   return <div className="w-full bg-white">
       {/* Hero Section with Parallax */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-          backgroundImage: `url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2091&q=80')`,
-          transform: 'scale(1.1)'
-        }} />
-          <div className="absolute inset-0 bg-blue-900/75" />
+          <div className="absolute inset-0 bg-contain bg-no-repeat" style={{
+            backgroundImage: `url('https://upload.wikimedia.org/wikipedia/commons/0/00/St_Louis_night_expblend_cropped.jpg')`,
+            backgroundPosition: 'right center'
+          }} />
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/95 via-blue-900/70 to-transparent"></div>
         </div>
-        <div className="relative z-10 text-center text-white">
-          <motion.h1 className="text-5xl md:text-6xl font-bold mb-6" initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8
-        }}>
-            Our Story
-          </motion.h1>
-          <motion.p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto" initial={{
-          opacity: 0,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2
-        }}>
-            Building the future of healthcare equipment distribution since 2015
-          </motion.p>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6"
+            >
+              <div className="inline-block">
+                <span className="text-blue-400 font-semibold tracking-wider uppercase text-sm">About Us</span>
+                <div className="w-20 h-1 bg-blue-400 mt-2"></div>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
+                Our Story
+              </h1>
+              <p className="text-xl text-blue-100 leading-relaxed">
+                Building the future of healthcare equipment distribution since 2015
+              </p>
+              <div className="pt-4">
+                <Link 
+                  to="/contact" 
+                  className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl shadow-lg hover:bg-blue-50 transition duration-300 transform hover:-translate-y-1"
+                >
+                  Get in Touch
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="hidden md:block"
+            >
+              <div className="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-white mb-2">8+</div>
+                    <div className="text-blue-100">Years of Excellence</div>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-white mb-2">1000+</div>
+                    <div className="text-blue-100">Products Delivered</div>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-white mb-2">500+</div>
+                    <div className="text-blue-100">Happy Clients</div>
+                  </div>
+                  <div className="text-center p-4">
+                    <div className="text-4xl font-bold text-white mb-2">20+</div>
+                    <div className="text-blue-100">Global Partners</div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
       {/* Mission & Vision Section */}
@@ -188,7 +223,7 @@ const About: React.FC = () => {
         </div>
       </section>
       {/* Team Section */}
-      <section className="py-20 bg-gray-50">
+      {/* <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" initial={{
           opacity: 0,
@@ -230,7 +265,7 @@ const About: React.FC = () => {
               </motion.div>)}
           </div>
         </div>
-      </section>
+      </section> */}
       {/* Enhanced Stats Section */}
       <section className="py-20 bg-blue-700 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

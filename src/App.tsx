@@ -8,6 +8,7 @@ import Checkout from './pages/Checkout';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Footer from './components/Footer';
+import DotmedButton from './components/DotmedButton';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
           </Routes>
         </main>
         <Footer/>
+        <DotmedButton />
       </div>
     </Router>
   );
