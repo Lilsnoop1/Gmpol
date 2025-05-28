@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from 'lucide-react';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 import DotmedButton from './DotmedButton';
 
 const Footer: React.FC = () => {
@@ -14,18 +14,21 @@ const Footer: React.FC = () => {
             <p className="text-gray-400 mb-4">
               Your trusted source for high-quality medical equipment and parts.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <FacebookIcon className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <TwitterIcon className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <InstagramIcon className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <LinkedinIcon className="h-5 w-5" />
+            <div className="flex flex-col space-y-4">
+              <div className="flex space-x-4">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] hover:text-[#1877F2]/80 transition-colors">
+                  <FaFacebookF className="w-7 h-7" />
+                </a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-[#1DA1F2] hover:text-[#1DA1F2]/80 transition-colors">
+                  <FaTwitter className="w-7 h-7" />
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] hover:text-[#0A66C2]/80 transition-colors">
+                  <FaLinkedinIn className="w-7 h-7" />
+                </a>
+              </div>
+              <a href="https://wa.me/13145838759" target="_blank" rel="noopener noreferrer" className="text-[#25D366] hover:text-[#25D366]/80 transition-colors flex items-center gap-2">
+                <FaWhatsapp className="w-7 h-7" />
+                <span className="text-gray-400 hover:text-white">+1(314) 583-8759</span>
               </a>
             </div>
           </div>

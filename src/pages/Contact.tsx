@@ -163,11 +163,17 @@ const Contact: React.FC = () => {
                     <MapPinIcon className="h-6 w-6 text-blue-600 mt-1" />
                     <div className="ml-4">
                       <h3 className="text-lg font-medium text-gray-900">
-                        Pakistan Office
+                        Karachi Office
                       </h3>
-                      <p className="text-gray-600">18-C 24th Commercial Street,</p>
-                      <p className="text-gray-600">Phase-II, (EXT) DHA,</p>
-                      <p className="text-gray-600">Karachi, Pakistan</p>
+                      <div>
+                        <p className="text-gray-600">18-C 24th Commercial Street</p>
+                        <p className="text-gray-600">Phase-II, (EXT) DHA</p>
+                        <p className="text-gray-600">Karachi, Pakistan</p>
+                        <p className="text-gray-600 mt-4">
+                          Phone: +92 21 111-111-111<br />
+                          Email: info@gmpol.com
+                        </p>
+                      </div>
                     </div>
                   </div>
                   <div className="flex items-start">
@@ -218,7 +224,7 @@ const Contact: React.FC = () => {
                 <div className="bg-gray-100 rounded-lg overflow-hidden h-[250px] relative">
                   <iframe 
                     title="GMPOL Karachi Location" 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.614774972617!2d67.0750461!3d24.8605147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33d995d20cf99%3A0x946c00a811c6dd6c!2sDHA%20Phase%208!5e0!3m2!1sen!2s!4v1659942444781!5m2!1sen!2s" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3620.9349448484954!2d67.06898187559655!3d24.83189827794792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb33c6a8da39701%3A0x63f6458e150ad341!2s18c%2024th%20Commercial%20St%2C%20Phase%202%20Commercial%20Area%20Defence%20Housing%20Authority%2C%20Karachi%2C%2075500%2C%20Pakistan!5e0!3m2!1sen!2s!4v1748427309117!5m2!1sen!2s" 
                     width="100%" 
                     height="100%" 
                     style={{ border: 0 }} 
