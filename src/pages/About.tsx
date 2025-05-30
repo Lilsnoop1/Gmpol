@@ -33,13 +33,13 @@ const About: React.FC = () => {
     bio: 'Former hospital director with focus on equipment standards'
   }];
   const timeline = [{
-    year: '2015',
+    year: '2009',
     title: 'Company Founded',
-    description: 'Started operations in Karachi with a focus on patient monitoring equipment'
+    description: 'GMPOL LLC was established and registered in the state of Missouri on July 10, 2009 under the Missouri Limited Liability Company Act.'
   }, {
-    year: '2017',
-    title: 'International Expansion',
-    description: 'Established partnerships with global manufacturers and expanded product range'
+    year: '2009',
+    title: 'Our Mission',
+    description: 'To provide New and Refurbished Medical Equipment for Hospitals, Clinics & Doctors Offices around the globe. We also Support Parts & Supplies after sale.'
   }, {
     year: '2019',
     title: 'ISO Certification',
@@ -261,7 +261,7 @@ const About: React.FC = () => {
           }} transition={{
             duration: 0.6
           }}>
-              <div className="text-5xl font-bold mb-2">8+</div>
+              <div className="text-5xl font-bold mb-2">14+</div>
               <div className="text-blue-200">Years Experience</div>
             </motion.div>
             <motion.div className="text-center" initial={{
@@ -276,7 +276,7 @@ const About: React.FC = () => {
             duration: 0.6,
             delay: 0.2
           }}>
-              <div className="text-5xl font-bold mb-2">1000+</div>
+              <div className="text-5xl font-bold mb-2">5000+</div>
               <div className="text-blue-200">Products Delivered</div>
             </motion.div>
             <motion.div className="text-center" initial={{
@@ -291,8 +291,8 @@ const About: React.FC = () => {
             duration: 0.6,
             delay: 0.4
           }}>
-              <div className="text-5xl font-bold mb-2">500+</div>
-              <div className="text-blue-200">Happy Clients</div>
+              <div className="text-5xl font-bold mb-2">350+</div>
+              <div className="text-blue-200">Global Manufacturers</div>
             </motion.div>
             <motion.div className="text-center" initial={{
             opacity: 0,

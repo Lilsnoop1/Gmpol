@@ -39,7 +39,7 @@ const Products: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'machines' | 'instruments'>('machines');
+  const [activeTab, setActiveTab] = useState<'machines' | 'instruments' | 'parts'>('machines');
 
   const categories = ['All', 'Monitors', 'Surgical', 'Imaging', 'Respiratory', 'Accessories'];
 
@@ -61,8 +61,15 @@ const Products: React.FC = () => {
           setProducts(response.data);
           setProductDescriptions(metadataResponse.data.machines || []);
           // console.log(productDescriptions)
-        }else{
+        }else if(activeTab=="instruments"){
            const response = await axios.get<InstrumentData[]>(`${prod_url}/api/instruments`, {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
+          setInstruments(response.data);
+        }else{
+          const response = await axios.get<InstrumentData[]>(`${prod_url}/api/instruments`, {
             headers: {
               'Content-Type': 'application/json',
             },

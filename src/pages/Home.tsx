@@ -1,38 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon, GlobeIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-// Declare DOTmed types
-declare global {
-  interface Window {
-    DotmedEmbed?: {
-      init: () => void;
-    };
-  }
-}
-
 const Home: React.FC = () => {
-  useEffect(() => {
-    // Load DOTmed script
-    const script = document.createElement('script');
-    script.src = 'https://www.dotmed.com/js/embedListings.js?tkn=8842137ca13a6e67db4d97517c98bcda';
-    script.async = true;
-    document.body.appendChild(script);
-
-    return () => {
-      // Cleanup script on component unmount
-      document.body.removeChild(script);
-    };
-  }, []);
-
-  const handleDotmedClick = () => {
-    // Trigger DOTmed embed
-    if (window.DotmedEmbed) {
-      window.DotmedEmbed.init();
-    }
-  };
-
   return <div className="w-full">
       {/* Hero Section with Split Layout */}
       <section className="min-h-[85vh] flex items-center">
@@ -71,11 +42,11 @@ const Home: React.FC = () => {
               </motion.div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-bold text-white mb-1">8+</div>
+                  <div className="text-3xl font-bold text-white mb-1">16+</div>
                   <div className="text-blue-100 text-sm">Years Experience</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-bold text-white mb-1">1000+</div>
+                  <div className="text-3xl font-bold text-white mb-1">5000+</div>
                   <div className="text-blue-100 text-sm">Products Delivered</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
@@ -83,7 +54,7 @@ const Home: React.FC = () => {
                   <div className="text-blue-100 text-sm">Happy Clients</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-bold text-white mb-1">20+</div>
+                  <div className="text-3xl font-bold text-white mb-1">350+</div>
                   <div className="text-blue-100 text-sm">Global Partners</div>
                 </div>
               </div>
@@ -204,19 +175,6 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </section>
-
-      {/* DOTmed Floating Button */}
-      <div className="fixed bottom-8 right-8 z-50">
-        <button
-          onClick={handleDotmedClick}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-          title="DOTmed"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </button>
-      </div>
     </div>;
 };
 export default Home;

@@ -39,11 +39,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <Link to={`/products/${formattedName}`}>
+      <Link to={`/products/${formattedName}`} className="block aspect-[4/3]">
         <img
           src={`${machineurl}/${formattedName}`}
           alt={product.name}
-          className="w-full h-48 object-cover"
+          className="w-full h-full object-contain p-4"
         />
       </Link>
       <div className="p-4">
