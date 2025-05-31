@@ -1,20 +1,40 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { MapPinIcon, PhoneIcon, MailIcon, ClockIcon, SendIcon } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { useLocation } from 'react-router-dom';
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_CONTACT_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_CONTACT_TEMPLATE_ID;
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+interface LocationState {
+  message?: string;
+  subject?: string;
+}
+
 const Contact: React.FC = () => {
+  const location = useLocation();
+  const state = location.state as LocationState;
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
-    subject: '',
-    message: ''
+    subject: state?.subject || '',
+    message: state?.message || ''
   });
+
+  // Update form data when state changes
+  useEffect(() => {
+    if (state?.message || state?.subject) {
+      setFormData(prev => ({
+        ...prev,
+        subject: state.subject || prev.subject,
+        message: state.message || prev.message
+      }));
+    }
+  }, [state]);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;

@@ -1,9 +1,129 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon, GlobeIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon } from 'lucide-react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon, GlobeIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+interface ManufacturersModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const ManufacturersModal: React.FC<ManufacturersModalProps> = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate('/contact', { 
+      state: { 
+        message: 'Information for all Manufacturers',
+        subject: 'Manufacturers List Request'
+      } 
+    });
+    onClose();
+  };
+
+  const manufacturers = [
+    {
+      name: 'Karl Storz',
+      logo: 'https://www.karlstorz.com/static_2x/static/file_img/logo-ks-white-revamp_small%20(1)%20(1).svg',
+      description: 'Leading manufacturer of endoscopes and medical imaging equipment',
+      bgColor: 'bg-blue-900'
+    },
+    {
+      name: 'Olympus',
+      logo: 'https://www.olympus-global.com/shared/images/ci-logo-01.png',
+      description: 'Global leader in medical technology and endoscopy solutions'
+    },
+    {
+      name: 'Stryker',
+      logo: 'https://www.stryker.com/etc/designs/stryker/images/header/logo.png',
+      description: 'Innovative medical technology company specializing in surgical equipment'
+    },
+    {
+      name: 'Philips',
+      logo: 'https://cdn.worldvectorlogo.com/logos/philips.svg',
+      description: 'Healthcare technology leader in diagnostic imaging and patient monitoring'
+    }
+  ];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Our Global Manufacturing Partners</h2>
+              <button
+                onClick={onClose}
+                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-500" />
+              </button>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {manufacturers.map((manufacturer, index) => (
+                <motion.div
+                  key={manufacturer.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-gray-50 rounded-xl p-6 flex items-center space-x-4 hover:shadow-lg transition-shadow"
+                >
+                  <div className={`w-24 h-24 flex items-center justify-center ${manufacturer.bgColor || 'bg-white'} rounded-lg p-3`}>
+                    <img
+                      src={manufacturer.logo}
+                      alt={manufacturer.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-gray-900">{manufacturer.name}</h3>
+                    <p className="text-gray-600 text-sm mt-1">{manufacturer.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="mt-8 text-center space-y-4">
+              <p className="text-gray-600">
+                And many more trusted manufacturers...
+              </p>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={handleContactClick}
+                  className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
+                >
+                  <HeartHandshakeIcon className="w-5 h-5" />
+                  Contact for Complete List
+                </button>
+                <button
+                  onClick={onClose}
+                  className="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const Home: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return <div className="w-full">
       {/* Hero Section with Split Layout */}
       <section className="min-h-[85vh] flex items-center">
@@ -47,13 +167,16 @@ const Home: React.FC = () => {
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
                   <div className="text-3xl font-bold text-white mb-1">5000+</div>
-                  <div className="text-blue-100 text-sm">Products Delivered</div>
+                  <div className="text-blue-100 text-sm">Medical Products in Inventory</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
                   <div className="text-3xl font-bold text-white mb-1">500+</div>
-                  <div className="text-blue-100 text-sm">Happy Clients</div>
+                  <div className="text-blue-100 text-sm">Global Customers</div>
                 </div>
-                <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                <div 
+                  className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 cursor-pointer hover:bg-white/20 transition-colors"
+                  onClick={() => setIsModalOpen(true)}
+                >
                   <div className="text-3xl font-bold text-white mb-1">350+</div>
                   <div className="text-blue-100 text-sm">Global Partners</div>
                 </div>
@@ -121,40 +244,99 @@ const Home: React.FC = () => {
         </div>
       </section>
       {/* Shipping Partners Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-2xl font-semibold text-gray-900">Our Shipping Partners</h2>
             <p className="mt-2 text-gray-600">Reliable worldwide shipping through trusted carriers</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 items-center justify-items-center">
-            <div className="p-6 hover:scale-105 transition-transform duration-300">
-              <img 
-                src="https://cdn.worldvectorlogo.com/logos/dhl-express.svg" 
-                alt="DHL Express" 
-                className="h-16 object-contain"
-              />
-            </div>
-            <div className="p-6 hover:scale-105 transition-transform duration-300">
-              <img 
-                src="https://cdn.worldvectorlogo.com/logos/united-states-postal-service-logo.svg" 
-                alt="USPS" 
-                className="h-16 object-contain"
-              />
-            </div>
-            <div className="p-6 hover:scale-105 transition-transform duration-300">
-              <img 
-                src="https://cdn.worldvectorlogo.com/logos/fedex-express-6.svg" 
-                alt="FedEx" 
-                className="h-16 object-contain"
-              />
-            </div>
-            <div className="p-6 hover:scale-105 transition-transform duration-300">
-              <img 
-                src="https://cdn.worldvectorlogo.com/logos/ups-logo-1.svg" 
-                alt="UPS" 
-                className="h-16 object-contain"
-              />
+          <div className="relative">
+            <div className="flex animate-slide space-x-12">
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/dhl-express.svg" 
+                  alt="DHL Express" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/united-states-postal-service-logo.svg" 
+                  alt="USPS" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/fedex-express-6.svg" 
+                  alt="FedEx" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/ups-logo-1.svg" 
+                  alt="UPS" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://leopardscourier.com//leopardcourier_dubai/images/c-logo.png" 
+                  alt="Leopard Courier" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0 bg-red-600 rounded-lg">
+                <img 
+                  src="https://www.tcsexpress.com/TCS.svg" 
+                  alt="TCS" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              {/* Duplicate logos for continuous sliding effect */}
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/dhl-express.svg" 
+                  alt="DHL Express" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/united-states-postal-service-logo.svg" 
+                  alt="USPS" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/fedex-express-6.svg" 
+                  alt="FedEx" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://cdn.worldvectorlogo.com/logos/ups-logo-1.svg" 
+                  alt="UPS" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0">
+                <img 
+                  src="https://leopardscourier.com//leopardcourier_dubai/images/c-logo.png" 
+                  alt="Leopard Courier" 
+                  className="h-16 object-contain"
+                />
+              </div>
+              <div className="p-6 hover:scale-105 transition-transform duration-300 flex-shrink-0 bg-red-600 rounded-lg">
+                <img 
+                  src="https://www.tcsexpress.com/TCS.svg" 
+                  alt="TCS" 
+                  className="h-16 object-contain"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -175,6 +357,8 @@ const Home: React.FC = () => {
           </Link>
         </div>
       </section>
+
+      <ManufacturersModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>;
 };
 export default Home;

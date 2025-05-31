@@ -24,6 +24,7 @@ interface ProductData {
   createdAt: string;
   updatedAt: string;
   slug: string;
+  extension:string;
 }
 
 interface InstrumentData {

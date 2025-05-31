@@ -8,8 +8,8 @@ import Contact from './pages/Contact';
 import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import DotmedButton from './components/DotmedButton';
+import Checkout from './pages/Checkout';
 
-// Declare DOTmed types
 declare global {
   interface Window {
     DotmedEmbed?: {
@@ -20,24 +20,13 @@ declare global {
 
 const App: React.FC = () => {
   const [showListings, setShowListings] = useState(false);
-
+  
+  // Re-initialize DOTmed when the modal is shown
   useEffect(() => {
-    // Load DOTmed script
-    const script = document.createElement('script');
-    script.src = 'https://www.dotmed.com/js/embedListings.js?tkn=8842137ca13a6e67db4d97517c98bcda';
-    script.async = true;
-    script.onload = () => {
-      // Initialize DOTmed once when script loads
-      if (window.DotmedEmbed) {
-        window.DotmedEmbed.init();
-      }
-    };
-    document.body.appendChild(script);
-
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, []);
+    if (showListings && window.DotmedEmbed && document.getElementById('dm-top-container')) {
+      window.DotmedEmbed.init();
+    }
+  }, [showListings]);
 
   const handleDotmedClick = () => {
     setShowListings(!showListings);
@@ -47,12 +36,19 @@ const App: React.FC = () => {
     <Router>
       <div className="flex flex-col min-h-screen">
         <Navbar />
-        
-        {/* DOTmed Listings Modal with Blur Background */}
-        <div className={`fixed inset-0 z-50 overflow-y-auto transition-opacity duration-300 ${showListings ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+
+        {/* DOTmed Listings Modal */}
+        <div
+          className={`fixed inset-0 z-50 overflow-y-auto transition-opacity duration-300 ${
+            showListings ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+          }`}
+        >
           {/* Blur Background */}
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm" onClick={handleDotmedClick}></div>
-          
+          <div
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+            onClick={handleDotmedClick}
+          ></div>
+
           {/* Modal Content */}
           <div className="relative min-h-screen flex items-center justify-center p-4">
             <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-hidden">
@@ -62,8 +58,18 @@ const App: React.FC = () => {
                   onClick={handleDotmedClick}
                   className="text-gray-500 hover:text-gray-700 transition-colors"
                 >
-                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
               </div>
@@ -80,7 +86,8 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/products/:slug" element={<ProductDetail />} />
+            <Route path="/products/:id/:comesfrom?" element={<ProductDetail />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
 

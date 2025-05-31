@@ -18,6 +18,7 @@ interface ProductData {
   createdAt: string;
   updatedAt: string;
   slug: string;
+  extension:string;
 }
 
 interface InstrumentData {
@@ -215,7 +216,7 @@ const Checkout: React.FC = () => {
         <div className="flex items-start space-x-4">
           <div className="flex-shrink-0">
             <img
-              src={`${machineurl}/${machine.slug}.jpg`}
+              src={`${machineurl}/${machine.slug}${machine.extension}`}
               alt={machine.name}
               className="w-24 h-24 object-cover rounded-lg"
               onError={e => {

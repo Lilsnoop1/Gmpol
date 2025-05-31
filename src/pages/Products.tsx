@@ -27,6 +27,7 @@ interface ProductData {
   createdAt: string;
   updatedAt: string;
   slug: string;
+  extension: string;
 }
 
 const prod_url=import.meta.env.VITE_PROD_URL;
@@ -119,8 +120,8 @@ const Products: React.FC = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-3xl font-bold text-gray-900 mb-4">Medical Parts Catalog</h1>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">Medical Parts Catalog</h1>
 
         {/* Tabs */}
         <div className="border-b border-gray-200 mb-8">

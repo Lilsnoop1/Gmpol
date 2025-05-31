@@ -16,6 +16,7 @@ interface ProductData {
   createdAt: string;
   updatedAt: string;
   slug: string;
+  extension: string;
 }
 
 interface InstrumentData {
@@ -32,10 +33,10 @@ const machineurl = import.meta.env.VITE_R2_PUBLIC_URL_MACHINE;
 
 // Helper function to format product name as URL-friendly string
 const formatName = (name: string) =>
-  name.toLowerCase().replace(/\s+/g, '_')+'.jpg';
+  name.toLowerCase().replace(/\s+/g, '_');
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const formattedName = formatName(product.name);
+  const formattedName = formatName(product.name)+product.extension;
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
