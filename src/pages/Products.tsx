@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { SearchIcon, FilterIcon } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
-import { ProductMachines } from '../data/products';
 import InstrumentCard from '../components/InstrumentCard';
+import PartsCard from '../components/PartsCard';
 
 interface ProductMetadata {
   description: string;
@@ -17,6 +17,11 @@ interface InstrumentData {
   url: string;
   size?: number;
   lastModified?: string | Date;
+}
+
+interface PartsData{
+  name?:string;
+  url:string;
 }
 
 
@@ -34,9 +39,9 @@ const prod_url=import.meta.env.VITE_PROD_URL;
 // const prod_url=import.meta.env.VITE_DEV_URL;
 
 const Products: React.FC = () => {
-  const [products, setProducts] = useState<ProductMachines[]>([]);
   const [productDescriptions, setProductDescriptions] = useState<ProductData[]>([]);
   const [instruments,setInstruments] = useState<InstrumentData[]>([]);
+  const [parts,setParts] = useState<PartsData[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [categoryFilter, setCategoryFilter] = useState('');
   const [loading, setLoading] = useState(true);
@@ -49,17 +54,11 @@ const Products: React.FC = () => {
       setLoading(true);
       try {
         if(activeTab=='machines'){
-           const response = await axios.get<ProductMachines[]>(`${prod_url}/api/machines`, {
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
           const metadataResponse = await axios.get<{ machines: ProductData[] }>(`${prod_url}/api/machines/descriptions`, {
             headers: {
               'Content-Type': 'application/json',
             }
           });
-          setProducts(response.data);
           setProductDescriptions(metadataResponse.data.machines || []);
           // console.log(productDescriptions)
         }else if(activeTab=="instruments"){
@@ -70,12 +69,12 @@ const Products: React.FC = () => {
           });
           setInstruments(response.data);
         }else{
-          const response = await axios.get<InstrumentData[]>(`${prod_url}/api/instruments`, {
+          const response = await axios.get<PartsData[]>(`${prod_url}/api/parts`, {
             headers: {
               'Content-Type': 'application/json',
             },
           });
-          setInstruments(response.data);
+          setParts(response.data);
         }
       } catch (error) {
         console.error('Failed to fetch machines:', error);
@@ -94,6 +93,15 @@ const Products: React.FC = () => {
 
   const filteredProducts = activeTab === 'instruments'
   ? instruments.filter((file) => {
+      const matchesSearch =
+        (file.name?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
+        file.url.toLowerCase().includes(searchTerm.toLowerCase());
+
+      // For simplicity, instruments ignore category filtering
+      return matchesSearch;
+    })
+  : activeTab==='parts'?
+    parts.filter((file) => {
       const matchesSearch =
         (file.name?.toLowerCase().includes(searchTerm.toLowerCase()) ?? false) ||
         file.url.toLowerCase().includes(searchTerm.toLowerCase());
@@ -120,11 +128,11 @@ const Products: React.FC = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen w-full">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pb-10">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">Medical Parts Catalog</h1>
 
         {/* Tabs */}
-        <div className="border-b border-gray-200 mb-8">
+        <div className="border-b border-gray-200 mb-8 mt-8">
           <nav className="-mb-px flex space-x-8" aria-label="Tabs">
             <button
               onClick={() => setActiveTab('machines')}
@@ -149,6 +157,18 @@ const Products: React.FC = () => {
               `}
             >
               Instruments
+            </button>
+            <button
+              onClick={() => setActiveTab('parts')}
+              className={`
+                whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm
+                ${activeTab === 'parts'
+                  ? 'border-blue-500 text-blue-600'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }
+              `}
+            >
+              Parts
             </button>
           </nav>
         </div>
@@ -191,9 +211,10 @@ const Products: React.FC = () => {
         {filteredProducts.map((item) =>
           activeTab === 'machines' ? (
             <ProductCard key={item.name} product={item as ProductData} />
-          ) : (
-            <InstrumentCard key={item.url} file={item} />
-          )
+          ) : activeTab=='instruments' ? (
+            <InstrumentCard key={(item as InstrumentData).url} file={item as InstrumentData} />
+          ):
+            <PartsCard key={(item as PartsData).url} file={item as PartsData}/>
         )}
       </div>
         ) : (

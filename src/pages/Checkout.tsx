@@ -21,6 +21,11 @@ interface ProductData {
   extension:string;
 }
 
+interface PartsData{
+  name?: string;
+  url: string;
+}
+
 interface InstrumentData {
   name?: string;
   url: string;
@@ -30,7 +35,7 @@ interface InstrumentData {
 
 interface LocationState {
   product: ProductData | InstrumentData;
-  type?: 'instrument' | 'machine';
+  type?: 'instrument' | 'machine' | 'part';
 }
 
 const machineurl = import.meta.env.VITE_R2_PUBLIC_URL_MACHINE;
@@ -267,7 +272,7 @@ const Checkout: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link 
-            to={`/products/${type === 'instrument' ? encodeURIComponent((product as InstrumentData).name || '') + '/instrument' : (product as ProductData).slug}`} 
+            to={`/products/${type === 'instrument' ? encodeURIComponent((product as InstrumentData).name || '') + '/instrument' : type==="part"? encodeURIComponent((product as PartsData).name || '')+'/part' : (product as ProductData).slug}/machines/${(product as ProductData).extension}`} 
             className="inline-flex items-center text-blue-600 hover:text-blue-800"
           >
             <ArrowLeftIcon className="h-4 w-4 mr-2" />

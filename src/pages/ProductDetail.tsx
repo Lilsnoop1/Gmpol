@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const machineurl = import.meta.env.VITE_R2_PUBLIC_URL_MACHINE;
 const instrumenturl = import.meta.env.VITE_R2_PUBLIC_URL_INSTRUMENT;
+const partsurl = import.meta.env.VITE_R2_PUBLIC_URL_PARTS;
 
 const prod_url=import.meta.env.VITE_PROD_URL;
 const dev_url=import.meta.env.VITE_DEV_URL;
@@ -33,16 +34,20 @@ interface InstrumentData {
   size?: number;
   lastModified?: string | Date;
 }
-
+interface PartsData {
+  name?: string;
+  url: string;
+}
 interface ApiResponse {
   data: ProductData;
 }
 
 const ProductDetail: React.FC = () => {
-  const { id, comesfrom } = useParams<{ id: string; comesfrom?: string }>();
+  const { id, comesfrom, ext } = useParams<{ id: string; comesfrom?: string; ext?: string }>();
   const navigate = useNavigate();
   const [product, setProduct] = useState<ProductData | null>(null);
   const [instrument, setInstrument] = useState<InstrumentData | null>(null);
+   const [parts, setParts] = useState<PartsData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -54,6 +59,12 @@ const ProductDetail: React.FC = () => {
         name: decodeURIComponent(id),
         url: `${instrumenturl}/${id}`,
         lastModified: new Date().toISOString()
+      });
+      setLoading(false);
+    }else if(comesfrom==='part'){
+      setParts({
+        name: decodeURIComponent(id),
+        url: `${partsurl}/${id}`,
       });
       setLoading(false);
     } else {
@@ -75,7 +86,7 @@ const ProductDetail: React.FC = () => {
 
   if (loading) return <div className="text-center py-10">Loading...</div>;
 
-  if (!product && !instrument) {
+  if (!product && !instrument && !parts) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
         <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
@@ -155,15 +166,47 @@ const ProductDetail: React.FC = () => {
       </div>
     </div>
   );
+  const renderPartsDetails = () => (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="bg-gray-100 rounded-lg overflow-hidden">
+        <img
+          src={`${partsurl}/${encodeURIComponent(id || '')}`}
+          alt={parts?.name || 'Instrument'}
+          className="w-full h-auto object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <div>
+        <div className="mb-6">
+          <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-2">
+            Instrument
+          </span>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Instrument {parts?.name || 'Unnamed'}
+          </h1>
+        </div>
+        <div className="mt-8">
+          <button
+            onClick={() => navigate('/checkout', { state: { product: parts,type:'part' } })}
+            className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition duration-200"
+          >
+            Request Information
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 
   const renderProductDetails = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       <div className="bg-gray-100 rounded-lg overflow-hidden">
         <img
-          src={`${machineurl}/${id}`}
+          src={`${machineurl}/${id}${ext?ext:".png"}`}
           alt={product?.name}
           className="w-full h-auto object-cover"
           loading="lazy"
+          key={ext}
         />
       </div>
 
@@ -251,7 +294,7 @@ const ProductDetail: React.FC = () => {
           </Link>
         </div>
 
-        {comesfrom === 'instrument' ? renderInstrumentDetails() : renderProductDetails()}
+        {comesfrom === 'instrument' ? renderInstrumentDetails() : comesfrom==="part"? renderPartsDetails() : renderProductDetails()}
 
         <div className="mt-12 border-t border-gray-200 pt-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Additional Information</h2>

@@ -18,31 +18,18 @@ interface ProductData {
   slug: string;
   extension: string;
 }
-
-interface InstrumentData {
-  name?: string;
-  url: string;
-  size?: number;
-  lastModified?: string | Date;
-}
 interface ProductCardProps {
   product: ProductData;
 }
 
 const machineurl = import.meta.env.VITE_R2_PUBLIC_URL_MACHINE;
-
-// Helper function to format product name as URL-friendly string
-const formatName = (name: string) =>
-  name.toLowerCase().replace(/\s+/g, '_');
-
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
-  const formattedName = formatName(product.name)+product.extension;
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
-      <Link to={`/products/${formattedName}`} className="block aspect-[4/3]">
+      <Link to={`/products/${product.slug}/machines/${product.extension}`} className="block aspect-[4/3]">
         <img
-          src={`${machineurl}/${formattedName}`}
+          src={`${machineurl}/${product.slug+product.extension}`}
           alt={product.name}
           className="w-full h-full object-contain p-4"
         />
@@ -51,7 +38,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="flex justify-between items-start">
           <h3 className="text-lg font-semibold">
             <Link
-              to={`/products/${formattedName}`}
+              to={`/products/${product.slug}/machines/${product.extension}`}
               className="text-gray-900 hover:text-blue-700"
             >
               {product.name}
@@ -66,7 +53,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </p>
         <div className="mt-4 flex justify-between items-center">
           <Link
-            to={`/products/${formattedName}`}
+            to={`/products/${product.slug}/machines/${product.extension}`}
             className="text-sm text-blue-600 hover:text-blue-800 font-medium"
           >
             View Details →

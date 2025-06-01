@@ -80,13 +80,13 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        <main className="flex-grow">
+        <main className="flex-grow pt-20">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/products/:id/:comesfrom?" element={<ProductDetail />} />
+            <Route path="/products/:id/:comesfrom?/:ext?" element={<ProductDetail />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
