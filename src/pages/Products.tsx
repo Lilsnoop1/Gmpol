@@ -35,7 +35,7 @@ interface ProductData {
   extension: string;
 }
 
-const prod_url=import.meta.env.VITE_DEV_URL;
+const prod_url=import.meta.env.VITE_PROD_URL;
 // const prod_url=import.meta.env.VITE_DEV_URL;
 
 const Products: React.FC = () => {
