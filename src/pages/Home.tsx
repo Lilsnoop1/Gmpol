@@ -173,13 +173,13 @@ const Home: React.FC = () => {
                   <div className="text-3xl font-bold text-white mb-1">500+</div>
                   <div className="text-blue-100 text-sm">Global Customers</div>
                 </div>
-                <div 
+                <Link 
+                  to="/global-associations"
                   className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 cursor-pointer hover:bg-white/20 transition-colors"
-                  onClick={() => setIsModalOpen(true)}
                 >
                   <div className="text-3xl font-bold text-white mb-1">350+</div>
-                  <div className="text-blue-100 text-sm">Global Partners</div>
-                </div>
+                  <div className="text-blue-100 text-sm">Global Accounts</div>
+                </Link>
               </div>
             </div>
           </div>

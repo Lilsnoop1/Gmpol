@@ -64,11 +64,11 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-gray-400">
-              <li>Pakistan Office:</li>
+              <li className='text-lg font-semibold mb-4 text-white'>Pakistan Office:</li>
               <li>18-C 24th Commercial Street,</li>
               <li>Phase-II, (EXT) DHA,</li>
               <li>Karachi, Pakistan</li>
-              <li className="mt-4">USA Office:</li>
+              <li className="mt-4 text-lg font-semibold mb-4 text-white">USA Office:</li>
               <li>1047 Dutch Mill Drive</li>
               <li>Ballwin, Missouri</li>
               <li>USA 63011</li>

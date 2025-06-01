@@ -7,7 +7,7 @@ const machineurl = import.meta.env.VITE_R2_PUBLIC_URL_MACHINE;
 const instrumenturl = import.meta.env.VITE_R2_PUBLIC_URL_INSTRUMENT;
 const partsurl = import.meta.env.VITE_R2_PUBLIC_URL_PARTS;
 
-const prod_url=import.meta.env.VITE_PROD_URL;
+const prod_url=import.meta.env.VITE_DEV_URL;
 const dev_url=import.meta.env.VITE_DEV_URL;
 
 interface ProductMetadata {

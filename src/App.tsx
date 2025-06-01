@@ -9,6 +9,7 @@ import Products from './pages/Products';
 import ProductDetail from './pages/ProductDetail';
 import DotmedButton from './components/DotmedButton';
 import Checkout from './pages/Checkout';
+import GlobalAssociations from './pages/GlobalAssociations';
 
 declare global {
   interface Window {
@@ -88,6 +89,7 @@ const App: React.FC = () => {
             <Route path="/products" element={<Products />} />
             <Route path="/products/:id/:comesfrom?/:ext?" element={<ProductDetail />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/global-associations" element={<GlobalAssociations />} />
           </Routes>
         </main>
 

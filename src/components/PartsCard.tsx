@@ -13,7 +13,10 @@ interface PartsCardProps {
 const partsurl = import.meta.env.VITE_R2_PUBLIC_URL_PARTS;
 
 // Helper function to format product name as URL-friendly string
-const formatName = (name: string) => `${encodeURIComponent(name)}`;
+const formatName = (name: string) => {
+//   const nameWithoutExtension = name.replace(/\.[^/.]+$/, ""); // Removes the last file extension
+  return encodeURIComponent(name);
+};
 
 const PartsCard: React.FC<PartsCardProps> = ({ file}) => {
   const formattedName = file.name ? formatName(file.name) : file.url;
