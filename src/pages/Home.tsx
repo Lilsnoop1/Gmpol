@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ShieldCheckIcon, TruckIcon, BadgeCheckIcon, HeartPulseIcon, StarIcon, CheckCircleIcon, GlobeIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon, X } from 'lucide-react';
+import {CheckCircleIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslate } from "@tolgee/react";
 
 interface ManufacturersModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface ManufacturersModalProps {
 
 const ManufacturersModal: React.FC<ManufacturersModalProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
+  const { t } = useTranslate();
 
   const handleContactClick = () => {
     navigate('/contact', { 
@@ -63,7 +65,7 @@ const ManufacturersModal: React.FC<ManufacturersModalProps> = ({ isOpen, onClose
             onClick={e => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold text-gray-900">Our Global Manufacturing Partners</h2>
+              <h2 className="text-2xl font-bold text-gray-900">{t('our_global_manufacturing_partners', 'Our Global Manufacturing Partners')}</h2>
               <button
                 onClick={onClose}
                 className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -96,7 +98,7 @@ const ManufacturersModal: React.FC<ManufacturersModalProps> = ({ isOpen, onClose
             </div>
             <div className="mt-8 text-center space-y-4">
               <p className="text-gray-600">
-                And many more trusted manufacturers...
+                {t('and_many_more', 'And many more trusted manufacturers...')}
               </p>
               <div className="flex justify-center gap-4">
                 <button
@@ -104,13 +106,13 @@ const ManufacturersModal: React.FC<ManufacturersModalProps> = ({ isOpen, onClose
                   className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center gap-2"
                 >
                   <HeartHandshakeIcon className="w-5 h-5" />
-                  Contact for Complete List
+                  {t('contact_for_complete_list', 'Contact for Complete List')}
                 </button>
                 <button
                   onClick={onClose}
                   className="bg-gray-100 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-200 transition-colors"
                 >
-                  Close
+                  {t('close', 'Close')}
                 </button>
               </div>
             </div>
@@ -123,6 +125,7 @@ const ManufacturersModal: React.FC<ManufacturersModalProps> = ({ isOpen, onClose
 
 const Home: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslate();
 
   return <div className="w-full">
       {/* Hero Section with Split Layout */}
@@ -138,47 +141,45 @@ const Home: React.FC = () => {
                 className="space-y-8"
               >
                 <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
-                  Your Trusted Source for Medical Equipment
+                  {t('your_trusted_source', 'Your Trusted Source for Medical Equipment')}
                 </h1>
                 <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                  Discover high-quality medical equipment and parts, sourced
-                  globally and delivered with excellence. Empowering healthcare
-                  through reliable solutions.
+                  {t('discover_high_quality', 'Discover high-quality medical equipment and parts, sourced globally and delivered with excellence. Empowering healthcare through reliable solutions.')}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Link 
                     to="/products" 
                     className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 transition duration-300 text-center transform hover:-translate-y-1"
                   >
-                    Browse Products
+                    {t('browse_products', 'Browse Products')}
                   </Link>
                   <Link 
                     to="/contact" 
                     className="inline-block bg-transparent text-white border-2 border-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition duration-300 text-center transform hover:-translate-y-1"
                   >
-                    Contact Us
+                    {t('contact_us', 'Contact Us')}
                   </Link>
                 </div>
               </motion.div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-bold text-white mb-1">16+</div>
-                  <div className="text-blue-100 text-sm">Years Experience</div>
+                  <div className="text-3xl font-bold text-white mb-1">{t('sixteen_plus', '16+')}</div>
+                  <div className="text-blue-100 text-sm">{t('years_experience', 'Years Experience')}</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-bold text-white mb-1">5000+</div>
-                  <div className="text-blue-100 text-sm">Medical Products in Inventory</div>
+                  <div className="text-3xl font-bold text-white mb-1">{t('five_thousand_plus', '5000+')}</div>
+                  <div className="text-blue-100 text-sm">{t('medical_products_inventory', 'Medical Products in Inventory')}</div>
                 </div>
                 <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-                  <div className="text-3xl font-bold text-white mb-1">500+</div>
-                  <div className="text-blue-100 text-sm">Global Customers</div>
+                  <div className="text-3xl font-bold text-white mb-1">{t('five_hundred_plus', '500+')}</div>
+                  <div className="text-blue-100 text-sm">{t('global_customers', 'Global Customers')}</div>
                 </div>
                 <Link 
                   to="/global-associations"
                   className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20 cursor-pointer hover:bg-white/20 transition-colors"
                 >
-                  <div className="text-3xl font-bold text-white mb-1">350+</div>
-                  <div className="text-blue-100 text-sm">Global Accounts</div>
+                  <div className="text-3xl font-bold text-white mb-1">{t('three_fifty_plus', '350+')}</div>
+                  <div className="text-blue-100 text-sm">{t('global_accounts', 'Global Accounts')}</div>
                 </Link>
               </div>
             </div>
@@ -198,9 +199,9 @@ const Home: React.FC = () => {
       <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why Choose GMPOL?</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('why_choose_gmpol', 'Why Choose GMPOL?')}</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              We combine global expertise with local knowledge to provide the best medical equipment solutions
+              {t('global_expertise', 'We combine global expertise with local knowledge to provide the best medical equipment solutions')}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -208,36 +209,36 @@ const Home: React.FC = () => {
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
                 <Building2Icon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">Dual Presence</h3>
+              <h3 className="text-xl font-semibold text-center mb-4">{t('dual_presence', 'Dual Presence')}</h3>
               <p className="text-gray-600 text-center">
-                Strategic locations in both Pakistan and USA for efficient global distribution
+                {t('strategic_locations', 'Strategic locations in both Pakistan and USA for efficient global distribution')}
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
                 <GraduationCapIcon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">Expert Knowledge</h3>
+              <h3 className="text-xl font-semibold text-center mb-4">{t('expert_knowledge', 'Expert Knowledge')}</h3>
               <p className="text-gray-600 text-center">
-                Deep understanding of medical equipment requirements and specifications
+                {t('deep_understanding', 'Deep understanding of medical equipment requirements and specifications')}
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
                 <CheckCircleIcon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">Quality Verified</h3>
+              <h3 className="text-xl font-semibold text-center mb-4">{t('quality_verified', 'Quality Verified')}</h3>
               <p className="text-gray-600 text-center">
-                All equipment undergoes thorough inspection and meets international standards
+                {t('thorough_inspection', 'All equipment undergoes thorough inspection and meets international standards')}
               </p>
             </div>
             <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-6 mx-auto">
                 <HeartHandshakeIcon className="h-8 w-8 text-blue-600" />
               </div>
-              <h3 className="text-xl font-semibold text-center mb-4">Dedicated Support</h3>
+              <h3 className="text-xl font-semibold text-center mb-4">{t('dedicated_support', 'Dedicated Support')}</h3>
               <p className="text-gray-600 text-center">
-                Personalized assistance and after-sales support for all our clients
+                {t('personalized_assistance', 'Personalized assistance and after-sales support for all our clients')}
               </p>
             </div>
           </div>
@@ -247,8 +248,8 @@ const Home: React.FC = () => {
       <section className="py-20 bg-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-2xl font-semibold text-gray-900">Our Shipping Partners</h2>
-            <p className="mt-2 text-gray-600">Reliable worldwide shipping through trusted carriers</p>
+            <h2 className="text-2xl font-semibold text-gray-900">{t('our_shipping_partners', 'Our Shipping Partners')}</h2>
+            <p className="mt-2 text-gray-600">{t('reliable_worldwide_shipping', 'Reliable worldwide shipping through trusted carriers')}</p>
           </div>
           <div className="relative">
             <div className="flex animate-slide space-x-12">
@@ -346,14 +347,13 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-blue-800 opacity-50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-            Looking for Specific Medical Equipment?
+            {t('looking_for_specific_equipment', 'Looking for Specific Medical Equipment?')}
           </h2>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
-            Contact our expert team today. We'll help you find the perfect
-            solution for your healthcare facility.
+            {t('contact_expert_team', 'Contact our expert team today. We\'ll help you find the perfect solution for your healthcare facility.')}
           </p>
           <Link to="/contact" className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-md shadow-lg hover:bg-blue-50 transition duration-300">
-            Get in Touch
+            {t('get_in_touch', 'Get in Touch')}
           </Link>
         </div>
       </section>

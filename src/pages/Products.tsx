@@ -4,6 +4,7 @@ import { SearchIcon, FilterIcon } from 'lucide-react';
 import ProductCard from '../components/ProductCard';
 import InstrumentCard from '../components/InstrumentCard';
 import PartsCard from '../components/PartsCard';
+import { useTranslate } from '@tolgee/react';
 
 interface ProductMetadata {
   description: string;
@@ -46,8 +47,16 @@ const Products: React.FC = () => {
   const [categoryFilter, setCategoryFilter] = useState('');
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<'machines' | 'instruments' | 'parts'>('machines');
+  const { t } = useTranslate();
 
-  const categories = ['All', 'Monitors', 'Surgical', 'Imaging', 'Respiratory', 'Accessories'];
+  const categories = [
+    t('all_categories', 'All'), 
+    t('monitors', 'Monitors'), 
+    t('surgical', 'Surgical'), 
+    t('imaging', 'Imaging'), 
+    t('respiratory', 'Respiratory'), 
+    t('accessories', 'Accessories')
+  ];
 
   useEffect(() => {
     const fetchMachines = async () => {
@@ -119,7 +128,7 @@ const Products: React.FC = () => {
       const categoryValue = metadata.description || metadata.specifications.category;
       const matchesCategory =
         categoryFilter === '' ||
-        categoryFilter === 'All' ||
+        categoryFilter === t('all_categories', 'All') ||
         (typeof categoryValue === 'string' && categoryValue.toLowerCase() === categoryFilter.toLowerCase());
 
       return matchesSearch && matchesCategory;
@@ -129,7 +138,7 @@ const Products: React.FC = () => {
   return (
     <div className="bg-gray-50 min-h-screen w-full">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pb-10">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Medical Parts Catalog</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">{t('medical_parts_catalog', 'Medical Parts Catalog')}</h1>
 
         {/* Tabs */}
         <div className="border-b border-gray-200 mb-8 mt-8">
@@ -144,7 +153,7 @@ const Products: React.FC = () => {
                 }
               `}
             >
-              Machines
+              {t('machines', 'Machines')}
             </button>
             <button
               onClick={() => setActiveTab('instruments')}
@@ -156,7 +165,7 @@ const Products: React.FC = () => {
                 }
               `}
             >
-              Instruments
+              {t('instruments', 'Instruments')}
             </button>
             <button
               onClick={() => setActiveTab('parts')}
@@ -168,7 +177,7 @@ const Products: React.FC = () => {
                 }
               `}
             >
-              Parts
+              {t('parts', 'Parts')}
             </button>
           </nav>
         </div>
@@ -182,7 +191,7 @@ const Products: React.FC = () => {
             <input
               type="text"
               className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder={`Search ${activeTab}...`}
+              placeholder={t('search_placeholder', 'Search {tab}...', { tab: activeTab === 'machines' ? t('machines', 'Machines') : activeTab === 'instruments' ? t('instruments', 'Instruments') : t('parts', 'Parts') })}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
@@ -205,7 +214,7 @@ const Products: React.FC = () => {
 
         {/* Loading Indicator */}
         {loading ? (
-          <div className="text-center py-12 text-gray-600 text-lg">Loading {activeTab}...</div>
+          <div className="text-center py-12 text-gray-600 text-lg">{t('loading_text', 'Loading {tab}...', { tab: activeTab === 'machines' ? t('machines', 'Machines') : activeTab === 'instruments' ? t('instruments', 'Instruments') : t('parts', 'Parts') })}</div>
         ) : filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((item) =>
@@ -220,7 +229,7 @@ const Products: React.FC = () => {
         ) : (
           <div className="text-center py-12">
             <h3 className="text-xl text-gray-600">
-              No {activeTab} found matching your criteria
+              {t('no_results_found', 'No {tab} found matching your criteria', { tab: activeTab === 'machines' ? t('machines', 'Machines') : activeTab === 'instruments' ? t('instruments', 'Instruments') : t('parts', 'Parts') })}
             </h3>
             <button
               className="mt-4 text-blue-600 hover:text-blue-800"
@@ -229,7 +238,7 @@ const Products: React.FC = () => {
                 setCategoryFilter('');
               }}
             >
-              Clear filters
+              {t('clear_filters', 'Clear filters')}
             </button>
           </div>
         )}

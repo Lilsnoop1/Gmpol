@@ -2,58 +2,61 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Building2Icon, GlobeIcon, AwardIcon, UsersIcon } from 'lucide-react';
+import { useTranslate } from '@tolgee/react';
 
 const GlobalAssociations: React.FC = () => {
+  const { t } = useTranslate();
+
   const associations = [
     {
-      name: 'Karl Storz',
+      name: t('karl_storz', 'Karl Storz'),
       logo: 'https://www.karlstorz.com/static_2x/static/file_img/logo-ks-white-revamp_small%20(1)%20(1).svg',
-      description: 'Leading manufacturer of endoscopes and medical imaging equipment',
+      description: t('karl_storz_description', 'Leading manufacturer of endoscopes and medical imaging equipment'),
       bgColor: 'bg-blue-900',
-      region: 'Global',
-      partnership: 'Strategic Partner'
+      region: t('global', 'Global'),
+      partnership: t('strategic_partner', 'Strategic Partner')
     },
     {
-      name: 'Olympus',
+      name: t('olympus', 'Olympus'),
       logo: 'https://www.olympus-global.com/shared/images/ci-logo-01.png',
-      description: 'Global leader in medical technology and endoscopy solutions',
-      region: 'Global',
-      partnership: 'Premium Partner'
+      description: t('olympus_description', 'Global leader in medical technology and endoscopy solutions'),
+      region: t('global', 'Global'),
+      partnership: t('premium_partner', 'Premium Partner')
     },
     {
-      name: 'Stryker',
+      name: t('stryker', 'Stryker'),
       logo: 'https://www.stryker.com/etc/designs/stryker/images/header/logo.png',
-      description: 'Innovative medical technology company specializing in surgical equipment',
-      region: 'Global',
-      partnership: 'Technology Partner'
+      description: t('stryker_description', 'Innovative medical technology company specializing in surgical equipment'),
+      region: t('global', 'Global'),
+      partnership: t('technology_partner', 'Technology Partner')
     },
     {
-      name: 'Philips',
+      name: t('philips', 'Philips'),
       logo: 'https://cdn.worldvectorlogo.com/logos/philips.svg',
-      description: 'Healthcare technology leader in diagnostic imaging and patient monitoring',
-      region: 'Global',
-      partnership: 'Healthcare Solutions Partner'
+      description: t('philips_description', 'Healthcare technology leader in diagnostic imaging and patient monitoring'),
+      region: t('global', 'Global'),
+      partnership: t('healthcare_solutions_partner', 'Healthcare Solutions Partner')
     },
     {
-      name: 'Siemens Healthineers',
+      name: t('siemens_healthineers', 'Siemens Healthineers'),
       logo: 'https://www.dicardiology.com/sites/default/files/X0000_Siemens_Healthineers_logo.jpg',
-      description: 'Advanced medical imaging and laboratory diagnostics solutions',
-      region: 'Global',
-      partnership: 'Diagnostic Partner'
+      description: t('siemens_description', 'Advanced medical imaging and laboratory diagnostics solutions'),
+      region: t('global', 'Global'),
+      partnership: t('diagnostic_partner', 'Diagnostic Partner')
     },
     {
-      name: 'GE Healthcare',
+      name: t('ge_healthcare', 'GE Healthcare'),
       logo: 'https://esraeurope.org/wp-content/uploads/2021/05/GE-healthcare-logo_front.png',
-      description: 'Comprehensive medical imaging and monitoring solutions',
-      region: 'Global',
-      partnership: 'Healthcare Technology Partner'
+      description: t('ge_healthcare_description', 'Comprehensive medical imaging and monitoring solutions'),
+      region: t('global', 'Global'),
+      partnership: t('healthcare_technology_partner', 'Healthcare Technology Partner')
     },
     {
-      name: 'Drager',
+      name: t('drager', 'Drager'),
       logo: 'https://upload.wikimedia.org/wikipedia/commons/3/3f/Dr%C3%A4ger_Logo.svg',
-      description: 'Comprehensive medical imaging and monitoring solutions',
-      region: 'Global',
-      partnership: 'Healthcare Technology Partner'
+      description: t('drager_description', 'Comprehensive medical imaging and monitoring solutions'),
+      region: t('global', 'Global'),
+      partnership: t('healthcare_technology_partner', 'Healthcare Technology Partner')
     }
   ];
 
@@ -69,11 +72,10 @@ const GlobalAssociations: React.FC = () => {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Our Global Associations
+              {t('our_global_associations', 'Our Global Associations')}
             </h1>
             <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-              Partnering with world-leading manufacturers to provide the highest quality
-              medical equipment and solutions to healthcare facilities worldwide.
+              {t('associations_description', 'Partnering with world-leading manufacturers to provide the highest quality medical equipment and solutions to healthcare facilities worldwide.')}
             </p>
           </motion.div>
         </div>
@@ -90,8 +92,8 @@ const GlobalAssociations: React.FC = () => {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-blue-600 mb-2">350+</div>
-              <div className="text-gray-600">Global Accounts</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">{t('three_fifty_plus_associations', '350+')}</div>
+              <div className="text-gray-600">{t('global_accounts', 'Global Accounts')}</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
@@ -100,8 +102,8 @@ const GlobalAssociations: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-blue-600 mb-2">5000+</div>
-              <div className="text-gray-600">Medical Products in Inventory</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">{t('five_thousand_plus_associations', '5000+')}</div>
+              <div className="text-gray-600">{t('medical_products_inventory', 'Medical Products in Inventory')}</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
@@ -110,8 +112,8 @@ const GlobalAssociations: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-blue-600 mb-2">16+</div>
-              <div className="text-gray-600">Years Experience</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">{t('sixteen_plus_associations', '16+')}</div>
+              <div className="text-gray-600">{t('years_experience', 'Years Experience')}</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.5 }}
@@ -120,8 +122,8 @@ const GlobalAssociations: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-blue-600 mb-2">500+</div>
-              <div className="text-gray-600">Global Customers</div>
+              <div className="text-4xl font-bold text-blue-600 mb-2">{t('five_hundred_plus_associations', '500+')}</div>
+              <div className="text-gray-600">{t('global_customers', 'Global Customers')}</div>
             </motion.div>
           </div>
         </div>
@@ -137,12 +139,11 @@ const GlobalAssociations: React.FC = () => {
             className="text-center mb-16"
           >
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              Our Trusted Partners
+              {t('our_trusted_partners', 'Our Trusted Partners')}
             </h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              We collaborate with industry leaders to bring you the best medical equipment
-              and solutions, ensuring quality and reliability in every product.
+              {t('partners_description', 'We collaborate with industry leaders to bring you the best medical equipment and solutions, ensuring quality and reliability in every product.')}
             </p>
           </motion.div>
 
@@ -195,17 +196,16 @@ const GlobalAssociations: React.FC = () => {
             className="max-w-3xl mx-auto"
           >
             <h2 className="text-3xl font-bold text-white mb-6">
-              Are you a Retailer?
+              {t('are_you_retailer', 'Are you a Retailer?')}
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Join our network of trusted partners and expand your reach in the
-              global healthcare market.
+              {t('retailer_description', 'Join our network of trusted partners and expand your reach in the global healthcare market.')}
             </p>
             <Link
               to="/contact"
               className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-lg shadow-lg hover:bg-blue-50 transition duration-300"
             >
-              Contact Us
+              {t('contact_us', 'Contact Us')}
             </Link>
           </motion.div>
         </div>

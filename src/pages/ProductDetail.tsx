@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeftIcon, TruckIcon, ScaleIcon, RulerIcon, InfoIcon } from 'lucide-react';
 import axios from 'axios';
+import { useTranslate } from '@tolgee/react';
 
 const machineurl = import.meta.env.VITE_R2_PUBLIC_URL_MACHINE;
 const instrumenturl = import.meta.env.VITE_R2_PUBLIC_URL_INSTRUMENT;
@@ -49,6 +50,7 @@ const ProductDetail: React.FC = () => {
   const [instrument, setInstrument] = useState<InstrumentData | null>(null);
    const [parts, setParts] = useState<PartsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslate();
 
   useEffect(() => {
     if (!id) return;
@@ -84,18 +86,18 @@ const ProductDetail: React.FC = () => {
     }
   }, [id, comesfrom]);
 
-  if (loading) return <div className="text-center py-10">Loading...</div>;
+  if (loading) return <div className="text-center py-10">{t('loading', 'Loading...')}</div>;
 
   if (!product && !instrument && !parts) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
-        <h2 className="text-2xl font-bold text-gray-900 mb-4">Product Not Found</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-4">{t('product_not_found', 'Product Not Found')}</h2>
         <p className="text-gray-600 mb-6">
-          The product you're looking for doesn't exist or has been removed.
+          {t('product_not_found_description', 'The product you\'re looking for doesn\'t exist or has been removed.')}
         </p>
         <Link to="/products" className="inline-flex items-center text-blue-600 hover:text-blue-800">
           <ArrowLeftIcon className="h-4 w-4 mr-2" />
-          Back to Products
+          {t('back_to_products', 'Back to Products')}
         </Link>
       </div>
     );
@@ -106,9 +108,9 @@ const ProductDetail: React.FC = () => {
       <ul className={`pl-${level * 4} space-y-2`}>
         {Object.entries(specs).map(([key, value]) => (
           <li key={key} className="flex flex-col">
-            <span className="text-gray-700 font-medium">{key}</span>
+            <span className="text-gray-700 font-medium">{t(`spec_${key.toLowerCase()}`, key)}</span>
             {typeof value === 'string' || typeof value === 'number' ? (
-              <span className="text-gray-900">{value}</span>
+              <span className="text-gray-900">{t(`spec_value_${key.toLowerCase()}`, value.toString())}</span>
             ) : (
               renderSpecifications(value, level + 1)
             )}
@@ -123,7 +125,7 @@ const ProductDetail: React.FC = () => {
       <div className="bg-gray-100 rounded-lg overflow-hidden">
         <img
           src={`${instrumenturl}/${encodeURIComponent(id || '')}`}
-          alt={instrument?.name || 'Instrument'}
+          alt={instrument?.name || t('instrument', 'Instrument')}
           className="w-full h-auto object-cover"
           loading="lazy"
         />
@@ -132,24 +134,24 @@ const ProductDetail: React.FC = () => {
       <div>
         <div className="mb-6">
           <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-2">
-            Instrument
+            {t('instrument', 'Instrument')}
           </span>
           <h1 className="text-3xl font-bold text-gray-900">
-            Instrument {instrument?.name || 'Unnamed'}
+            {t('instrument_title', 'Instrument {name}', { name: instrument?.name || t('unnamed', 'Unnamed') })}
           </h1>
         </div>
 
         <div className="border-t border-b border-gray-200 py-4 my-6">
-          <h2 className="text-lg font-semibold mb-2">Details</h2>
+          <h2 className="text-lg font-semibold mb-2">{t('details', 'Details')}</h2>
           <div className="space-y-2">
             {instrument?.lastModified && (
               <p className="text-gray-700">
-                Last Modified: {new Date(instrument.lastModified).toLocaleDateString()}
+                {t('last_modified', 'Last Modified')}: {new Date(instrument.lastModified).toLocaleDateString()}
               </p>
             )}
             {instrument?.size && (
               <p className="text-gray-700">
-                Size: {(instrument.size / 1024).toFixed(2)} KB
+                {t('size', 'Size')}: {(instrument.size / 1024).toFixed(2)} KB
               </p>
             )}
           </div>
@@ -160,7 +162,7 @@ const ProductDetail: React.FC = () => {
             onClick={() => navigate('/checkout', { state: { product: instrument,type:'instrument' } })}
             className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition duration-200"
           >
-            Request Information
+            {t('request_information', 'Request Information')}
           </button>
         </div>
       </div>
@@ -171,7 +173,7 @@ const ProductDetail: React.FC = () => {
       <div className="bg-gray-100 rounded-lg overflow-hidden">
         <img
           src={`${partsurl}/${encodeURIComponent(id || '')}`}
-          alt={parts?.name || 'Instrument'}
+          alt={parts?.name || t('part', 'Part')}
           className="w-full h-auto object-cover"
           loading="lazy"
         />
@@ -180,10 +182,10 @@ const ProductDetail: React.FC = () => {
       <div>
         <div className="mb-6">
           <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-2">
-            Instrument
+            {t('part', 'Part')}
           </span>
           <h1 className="text-3xl font-bold text-gray-900">
-            Instrument {parts?.name || 'Unnamed'}
+            {t('part_title', 'Part {name}', { name: parts?.name || t('unnamed', 'Unnamed') })}
           </h1>
         </div>
         <div className="mt-8">
@@ -191,7 +193,7 @@ const ProductDetail: React.FC = () => {
             onClick={() => navigate('/checkout', { state: { product: parts,type:'part' } })}
             className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition duration-200"
           >
-            Request Information
+            {t('request_information', 'Request Information')}
           </button>
         </div>
       </div>
@@ -203,7 +205,7 @@ const ProductDetail: React.FC = () => {
       <div className="bg-gray-100 rounded-lg overflow-hidden">
         <img
           src={`${machineurl}/${id}${ext?ext:".png"}`}
-          alt={product?.name}
+          alt={t('product_image_alt', 'Product image for {name}', { name: product?.name || t('product', 'Product') })}
           className="w-full h-auto object-cover"
           loading="lazy"
           key={ext}
@@ -213,14 +215,14 @@ const ProductDetail: React.FC = () => {
       <div>
         <div className="mb-6">
           <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded mb-2">
-            {product?.name}
+            {t('product_name', product?.name || t('product', 'Product'))}
           </span>
-          <h1 className="text-3xl font-bold text-gray-900">{product?.name}</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{t('product_title', product?.name || t('product', 'Product'))}</h1>
         </div>
 
         <div className="border-t border-b border-gray-200 py-4 my-6">
-          <h2 className="text-lg font-semibold mb-2">Description</h2>
-          <p className="text-gray-700">{product?.metadata.description}</p>
+          <h2 className="text-lg font-semibold mb-2">{t('description', 'Description')}</h2>
+          <p className="text-gray-700">{t('product_description', product?.metadata.description || t('no_description_available', 'No description available'))}</p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-8">
@@ -228,8 +230,8 @@ const ProductDetail: React.FC = () => {
             <div className="flex items-start">
               <RulerIcon className="h-5 w-5 text-gray-400" />
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-gray-900">Dimensions</h3>
-                <p className="text-sm text-gray-500">{product?.metadata.specifications['Dimensions']}</p>
+                <h3 className="text-sm font-medium text-gray-900">{t('dimensions', 'Dimensions')}</h3>
+                <p className="text-sm text-gray-500">{t('dimensions_value', product?.metadata.specifications['Dimensions'] || t('not_specified', 'Not specified'))}</p>
               </div>
             </div>
           )}
@@ -238,8 +240,8 @@ const ProductDetail: React.FC = () => {
             <div className="flex items-start">
               <ScaleIcon className="h-5 w-5 text-gray-400" />
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-gray-900">Weight</h3>
-                <p className="text-sm text-gray-500">{product?.metadata.specifications['Weight']}</p>
+                <h3 className="text-sm font-medium text-gray-900">{t('weight', 'Weight')}</h3>
+                <p className="text-sm text-gray-500">{t('weight_value', product?.metadata.specifications['Weight'] || t('not_specified', 'Not specified'))}</p>
               </div>
             </div>
           )}
@@ -248,8 +250,8 @@ const ProductDetail: React.FC = () => {
             <div className="flex items-start">
               <InfoIcon className="h-5 w-5 text-gray-400" />
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-gray-900">Condition</h3>
-                <p className="text-sm text-gray-500">{product?.metadata.specifications['Condition']}</p>
+                <h3 className="text-sm font-medium text-gray-900">{t('condition', 'Condition')}</h3>
+                <p className="text-sm text-gray-500">{t('condition_value', product?.metadata.specifications['Condition'] || t('not_specified', 'Not specified'))}</p>
               </div>
             </div>
           )}
@@ -258,15 +260,15 @@ const ProductDetail: React.FC = () => {
             <div className="flex items-start">
               <TruckIcon className="h-5 w-5 text-gray-400" />
               <div className="ml-3">
-                <h3 className="text-sm font-medium text-gray-900">Availability</h3>
-                <p className="text-sm text-gray-500">{product?.metadata.specifications['Availability']}</p>
+                <h3 className="text-sm font-medium text-gray-900">{t('availability', 'Availability')}</h3>
+                <p className="text-sm text-gray-500">{t('availability_value', product?.metadata.specifications['Availability'] || t('not_specified', 'Not specified'))}</p>
               </div>
             </div>
           )}
         </div>
 
         <div className="mt-8">
-          <h2 className="text-lg font-semibold mb-4">Technical Specifications</h2>
+          <h2 className="text-lg font-semibold mb-4">{t('technical_specifications', 'Technical Specifications')}</h2>
           <div className="bg-gray-50 rounded-lg p-4">
             {product?.metadata.specifications && renderSpecifications(product.metadata.specifications)}
           </div>
@@ -277,7 +279,7 @@ const ProductDetail: React.FC = () => {
           onClick={() => navigate('/checkout', { state: { product, type: 'machine' } })}
           className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition duration-200"
         >
-          Request Information
+          {t('request_information', 'Request Information')}
         </button>
         </div>
       </div>
@@ -290,21 +292,20 @@ const ProductDetail: React.FC = () => {
         <div className="mb-6">
           <Link to="/products" className="inline-flex items-center text-blue-600 hover:text-blue-800">
             <ArrowLeftIcon className="h-4 w-4 mr-2" />
-            Back to Products
+            {t('back_to_products', 'Back to Products')}
           </Link>
         </div>
 
         {comesfrom === 'instrument' ? renderInstrumentDetails() : comesfrom==="part"? renderPartsDetails() : renderProductDetails()}
 
         <div className="mt-12 border-t border-gray-200 pt-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Additional Information</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">{t('additional_information', 'Additional Information')}</h2>
           <div className="bg-gray-50 rounded-lg p-6">
-            <h3 className="text-lg font-semibold mb-4">Compatibility</h3>
-            <p className="text-gray-700 mb-4">Contact us for detailed compatibility information.</p>
-            <h3 className="text-lg font-semibold mb-4">Shipping & Handling</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('compatibility', 'Compatibility')}</h3>
+            <p className="text-gray-700 mb-4">{t('contact_for_compatibility', 'Contact us for detailed compatibility information.')}</p>
+            <h3 className="text-lg font-semibold mb-4">{t('shipping_handling', 'Shipping & Handling')}</h3>
             <p className="text-gray-700">
-              All products are carefully packaged to ensure safe delivery. For international shipping or special handling
-              requirements, please contact our sales team.
+              {t('shipping_description', 'All products are carefully packaged to ensure safe delivery. For international shipping or special handling requirements, please contact our sales team.')}
             </p>
           </div>
         </div>

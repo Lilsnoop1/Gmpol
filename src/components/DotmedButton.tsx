@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { AwardIcon } from 'lucide-react';
 import CertificationsModal from './CertificationsModal';
+import { useTranslate } from '@tolgee/react';
 
 interface DotmedButtonProps {
   onClick: () => void;
@@ -9,6 +10,7 @@ interface DotmedButtonProps {
 
 const DotmedButton: React.FC<DotmedButtonProps> = ({ onClick, isListingsVisible }) => {
   const [isCertificationsOpen, setIsCertificationsOpen] = useState(false);
+  const {t} = useTranslate();
 
   return (
     <>
@@ -38,7 +40,7 @@ const DotmedButton: React.FC<DotmedButtonProps> = ({ onClick, isListingsVisible 
               <AwardIcon className="h-5 w-5 text-blue-600" />
             </div>
           </div>
-          <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-semibold">Certifications</span>
+          <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text font-semibold">{t('certifications','Certifications')}</span>
         </button>
       </div>
       <CertificationsModal

@@ -2,7 +2,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { GlobeIcon, AwardIcon, UsersIcon, ShieldCheckIcon, ClipboardCheckIcon, Building2Icon, GraduationCapIcon, HeartHandshakeIcon, TargetIcon, CheckCircle2Icon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslate } from '@tolgee/react';
+
 const About: React.FC = () => {
+  const { t } = useTranslate();
   const fadeIn = {
     initial: {
       opacity: 0,
@@ -17,41 +20,41 @@ const About: React.FC = () => {
     }
   };
   const teamMembers = [{
-    name: 'Anwar Syed',
-    role: 'Founder & CEO',
+    name: t('anwar_syed', 'Anwar Syed'),
+    role: t('founder_ceo', 'Founder & CEO'),
     image: 'https://placehold.co/400x400/e2e8f0/1e40af?text=AS',
-    bio: '20+ years experience in medical equipment distribution'
+    bio: t('anwar_bio', '20+ years experience in medical equipment distribution')
   }, {
-    name: 'Sarah Ahmed',
-    role: 'Technical Director',
+    name: t('sarah_ahmed', 'Sarah Ahmed'),
+    role: t('technical_director', 'Technical Director'),
     image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    bio: 'Biomedical engineer with expertise in equipment maintenance'
+    bio: t('sarah_bio', 'Biomedical engineer with expertise in equipment maintenance')
   }, {
-    name: 'Dr. Malik Rahman',
-    role: 'Quality Assurance Head',
+    name: t('dr_malik_rahman', 'Dr. Malik Rahman'),
+    role: t('quality_assurance_head', 'Quality Assurance Head'),
     image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-    bio: 'Former hospital director with focus on equipment standards'
+    bio: t('malik_bio', 'Former hospital director with focus on equipment standards')
   }];
   const timeline = [{
-    year: '2009',
-    title: 'Company Founded',
-    description: 'GMPOL LLC was established and registered in the state of Missouri on July 10, 2009 under the Missouri Limited Liability Company Act.'
+    year: t('year_2009', '2009'),
+    title: t('company_founded', 'Company Founded'),
+    description: t('company_founded_description', 'GMPOL LLC was established and registered in the state of Missouri on July 10, 2009 under the Missouri Limited Liability Company Act.')
   }, {
-    year: '2009',
-    title: 'Our Mission',
-    description: 'To provide New and Refurbished Medical Equipment for Hospitals, Clinics & Doctors Offices around the globe. We also Support Parts & Supplies after sale.'
+    year: t('year_2009_mission', '2009'),
+    title: t('our_mission_timeline', 'Our Mission'),
+    description: t('mission_timeline_description', 'To provide New and Refurbished Medical Equipment for Hospitals, Clinics & Doctors Offices around the globe. We also Support Parts & Supplies after sale.')
   }, {
-    year: '2019',
-    title: 'ISO Certification',
-    description: 'Achieved ISO 13485 certification for medical device quality management'
+    year: t('year_2019', '2019'),
+    title: t('iso_certification', 'ISO Certification'),
+    description: t('iso_certification_description', 'Achieved ISO 13485 certification for medical device quality management')
   }, {
-    year: '2021',
-    title: 'Regional Leadership',
-    description: "Became one of Pakistan's leading medical equipment suppliers"
+    year: t('year_2021', '2021'),
+    title: t('regional_leadership', 'Regional Leadership'),
+    description: t('regional_leadership_description', "Became one of Pakistan's leading medical equipment suppliers")
   }, {
-    year: '2023',
-    title: 'Digital Transformation',
-    description: 'Launched online platform for improved customer service and product access'
+    year: t('year_2023', '2023'),
+    title: t('digital_transformation', 'Digital Transformation'),
+    description: t('digital_transformation_description', 'Launched online platform for improved customer service and product access')
   }];
   return <div className="w-full bg-white">
       {/* Hero Section */}
@@ -73,15 +76,14 @@ const About: React.FC = () => {
               className="space-y-8"
             >
               <div className="inline-block">
-                <span className="text-blue-300 font-semibold tracking-wider uppercase text-sm mb-2 block">Our Story</span>
+                <span className="text-blue-300 font-semibold tracking-wider uppercase text-sm mb-2 block">{t('our_story', 'Our Story')}</span>
                 <div className="w-20 h-1 bg-blue-400 mx-auto"></div>
               </div>
               <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-                About <span className="text-blue-300">GMPOL</span>
+                {t('about_gmpol', 'About')} <span className="text-blue-300">GMPOL</span>
               </h1>
               <p className="text-2xl text-blue-100 leading-relaxed max-w-3xl mx-auto">
-                Your trusted partner in global medical equipment solutions, 
-                connecting healthcare providers with quality equipment worldwide.
+                {t('trusted_partner', 'Your trusted partner in global medical equipment solutions, connecting healthcare providers with quality equipment worldwide.')}
               </p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -93,7 +95,7 @@ const About: React.FC = () => {
                   to="/contact" 
                   className="inline-flex items-center px-8 py-4 bg-white text-blue-700 font-semibold rounded-xl shadow-lg hover:bg-blue-50 transition duration-300 transform hover:-translate-y-1"
                 >
-                  Get in Touch
+                  {t('get_in_touch', 'Get in Touch')}
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -122,13 +124,10 @@ const About: React.FC = () => {
                 <TargetIcon className="h-8 w-8 text-blue-600" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Our Mission
+                {t('our_mission', 'Our Mission')}
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                To provide healthcare facilities with reliable, high-quality
-                medical equipment through innovative distribution solutions and
-                exceptional service, contributing to better healthcare outcomes
-                across Pakistan and beyond.
+                {t('mission_statement', 'To provide healthcare facilities with reliable, high-quality medical equipment through innovative distribution solutions and exceptional service, contributing to better healthcare outcomes across Pakistan and beyond.')}
               </p>
             </motion.div>
             <motion.div className="bg-white p-8 rounded-xl shadow-lg" initial={{
@@ -146,13 +145,10 @@ const About: React.FC = () => {
                 <HeartHandshakeIcon className="h-8 w-8 text-blue-600" />
               </div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Our Vision
+                {t('our_vision', 'Our Vision')}
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                To become the most trusted and innovative medical equipment
-                solutions provider in the region, setting new standards in
-                quality, reliability, and customer service while making advanced
-                healthcare technology accessible to all.
+                {t('vision_statement', 'To become the most trusted and innovative medical equipment solutions provider in the region, setting new standards in quality, reliability, and customer service while making advanced healthcare technology accessible to all.')}
               </p>
             </motion.div>
           </div>
@@ -171,7 +167,7 @@ const About: React.FC = () => {
           once: true
         }}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Journey
+              {t('our_journey', 'Our Journey')}
             </h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto"></div>
           </motion.div>
@@ -261,8 +257,8 @@ const About: React.FC = () => {
           }} transition={{
             duration: 0.6
           }}>
-              <div className="text-5xl font-bold mb-2">14+</div>
-              <div className="text-blue-200">Years Experience</div>
+              <div className="text-5xl font-bold mb-2">{t('fourteen_plus', '14+')}</div>
+              <div className="text-blue-200">{t('years_experience_stats', 'Years Experience')}</div>
             </motion.div>
             <motion.div className="text-center" initial={{
             opacity: 0,
@@ -276,8 +272,8 @@ const About: React.FC = () => {
             duration: 0.6,
             delay: 0.2
           }}>
-              <div className="text-5xl font-bold mb-2">5000+</div>
-              <div className="text-blue-200">Products Delivered</div>
+              <div className="text-5xl font-bold mb-2">{t('five_thousand_plus_stats', '5000+')}</div>
+              <div className="text-blue-200">{t('products_delivered', 'Products Delivered')}</div>
             </motion.div>
             <motion.div className="text-center" initial={{
             opacity: 0,
@@ -291,8 +287,8 @@ const About: React.FC = () => {
             duration: 0.6,
             delay: 0.4
           }}>
-              <div className="text-5xl font-bold mb-2">350+</div>
-              <div className="text-blue-200">Global Manufacturers</div>
+              <div className="text-5xl font-bold mb-2">{t('three_fifty_plus_stats', '350+')}</div>
+              <div className="text-blue-200">{t('global_manufacturers', 'Global Manufacturers')}</div>
             </motion.div>
             <motion.div className="text-center" initial={{
             opacity: 0,
@@ -306,8 +302,8 @@ const About: React.FC = () => {
             duration: 0.6,
             delay: 0.6
           }}>
-              <div className="text-5xl font-bold mb-2">20+</div>
-              <div className="text-blue-200">Global Partners</div>
+              <div className="text-5xl font-bold mb-2">{t('twenty_plus', '20+')}</div>
+              <div className="text-blue-200">{t('global_partners', 'Global Partners')}</div>
             </motion.div>
           </div>
         </div>
@@ -325,32 +321,30 @@ const About: React.FC = () => {
           once: true
         }}>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Certifications
+              {t('our_certifications', 'Our Certifications')}
             </h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto mb-6"></div>
             <p className="text-gray-600 max-w-3xl mx-auto">
-              We maintain the highest standards of quality and compliance in the
-              medical equipment industry, ensuring our clients receive only the
-              best products and services.
+              {t('certifications_description', 'We maintain the highest standards of quality and compliance in the medical equipment industry, ensuring our clients receive only the best products and services.')}
             </p>
           </motion.div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[{
             icon: AwardIcon,
-            title: 'ISO 13485',
-            desc: 'Medical Devices Quality Management'
+            title: t('iso_13485', 'ISO 13485'),
+            desc: t('medical_devices_quality_management', 'Medical Devices Quality Management')
           }, {
             icon: ClipboardCheckIcon,
-            title: 'CE Marking',
-            desc: 'European Conformity Standards'
+            title: t('ce_marking', 'CE Marking'),
+            desc: t('european_conformity_standards', 'European Conformity Standards')
           }, {
             icon: ShieldCheckIcon,
-            title: 'FDA Registered',
-            desc: 'US Quality Standards'
+            title: t('fda_registered', 'FDA Registered'),
+            desc: t('us_quality_standards', 'US Quality Standards')
           }, {
             icon: GlobeIcon,
-            title: 'PMDA Certified',
-            desc: 'Pakistan Medical Devices Authority'
+            title: t('pmda_certified', 'PMDA Certified'),
+            desc: t('pakistan_medical_devices_authority', 'Pakistan Medical Devices Authority')
           }].map((cert, index) => <motion.div key={cert.title} className="bg-gray-50 p-6 rounded-xl border border-gray-200" initial={{
             opacity: 0,
             y: 20

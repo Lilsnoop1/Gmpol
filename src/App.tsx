@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useTolgee } from '@tolgee/react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -21,6 +22,9 @@ declare global {
 
 const App: React.FC = () => {
   const [showListings, setShowListings] = useState(false);
+  const tolgee = useTolgee();
+  const currentLanguage = tolgee.getLanguage();
+  const isRTL = currentLanguage === 'ar-SA';
   
   // Re-initialize DOTmed when the modal is shown
   useEffect(() => {
@@ -29,13 +33,19 @@ const App: React.FC = () => {
     }
   }, [showListings]);
 
+  // Update document direction when language changes
+  useEffect(() => {
+    document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+    document.documentElement.lang = currentLanguage || 'en';
+  }, [currentLanguage, isRTL]);
+
   const handleDotmedClick = () => {
     setShowListings(!showListings);
   };
 
   return (
     <Router>
-      <div className="flex flex-col min-h-screen">
+      <div className={`flex flex-col min-h-screen ${isRTL ? 'rtl' : 'ltr'}`} dir={isRTL ? 'rtl' : 'ltr'}>
         <Navbar />
 
         {/* DOTmed Listings Modal */}
@@ -53,7 +63,7 @@ const App: React.FC = () => {
           {/* Modal Content */}
           <div className="relative min-h-screen flex items-center justify-center p-4">
             <div className="relative bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[90vh] overflow-hidden">
-              <div className="flex justify-between items-center p-6 border-b border-gray-200">
+              <div className={`flex items-center p-6 border-b border-gray-200 ${isRTL ? 'flex-row-reverse' : 'justify-between'}`}>
                 <h2 className="text-2xl font-bold text-gray-900">DOTmed Listings</h2>
                 <button
                   onClick={handleDotmedClick}
