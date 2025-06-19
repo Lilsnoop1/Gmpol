@@ -103,22 +103,47 @@ const ProductDetail: React.FC = () => {
     );
   }
 
-  const renderSpecifications = (specs: { [key: string]: any }, level = 0) => {
-    return (
-      <ul className={`pl-${level * 4} space-y-2`}>
-        {Object.entries(specs).map(([key, value]) => (
-          <li key={key} className="flex flex-col">
-            <span className="text-gray-700 font-medium">{t(`spec_${key.toLowerCase()}`, key)}</span>
-            {typeof value === 'string' || typeof value === 'number' ? (
+  const renderSpecifications = (specs: { [key: string]: any }, level = 0): JSX.Element => {
+  const indent = `pl-${Math.min(level * 4, 12)}`;
+
+  return (
+    <ul className={`${indent} space-y-2`}>
+      {Object.entries(specs).map(([key, value]) => {
+        // Case: value is an object with `name` and `value` fields
+        if (typeof value === 'object' && value !== null && 'name' in value && 'value' in value) {
+          return (
+            <li key={key} className="flex flex-col">
+              <span className="text-gray-700 font-medium">{value.name}</span>
+              <span className="text-gray-900">{value.value}</span>
+            </li>
+          );
+        }
+
+        // Case: value is a simple string or number
+        if (typeof value === 'string' || typeof value === 'number') {
+          return (
+            <li key={key} className="flex flex-col">
+              <span className="text-gray-700 font-medium">{t(`spec_${key.toLowerCase()}`, key)}</span>
               <span className="text-gray-900">{t(`spec_value_${key.toLowerCase()}`, value.toString())}</span>
-            ) : (
-              renderSpecifications(value, level + 1)
-            )}
-          </li>
-        ))}
-      </ul>
-    );
-  };
+            </li>
+          );
+        }
+
+        // Case: nested object (recursive)
+        if (typeof value === 'object' && value !== null) {
+          return (
+            <li key={key} className="flex flex-col">
+              <span className="text-gray-700 font-medium">{t(`spec_${key.toLowerCase()}`, key)}</span>
+              {renderSpecifications(value, level + 1)}
+            </li>
+          );
+        }
+
+        return null;
+      })}
+    </ul>
+  );
+};
 
   const renderInstrumentDetails = () => (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -276,7 +301,7 @@ const ProductDetail: React.FC = () => {
 
         <div className="mt-8">
           <button
-          onClick={() => navigate('/checkout', { state: { product, type: 'machine' } })}
+          onClick={() => navigate('/checkout', { state: { product: product, type: 'machine' } })}
           className="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-md shadow-md hover:bg-blue-700 transition duration-200"
         >
           {t('request_information', 'Request Information')}

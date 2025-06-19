@@ -141,30 +141,63 @@ const Checkout: React.FC = () => {
       .join(' ');
   };
 
-  const renderSpecifications = (specs: { [key: string]: any }, level = 0) => {
-    return (
-      <div className={`space-y-2 ${level > 0 ? 'ml-4 border-l-2 border-gray-200 pl-4' : ''}`}>
-        {Object.entries(specs).map(([key, value]) => (
-          <div key={key} className="specification-group">
-            <h4 className={`font-medium text-gray-900 ${level === 0 ? 'text-sm' : 'text-xs'}`}>
-              {formatKey(key)}
-            </h4>
-            {typeof value === 'string' || typeof value === 'number' ? (
+  const renderSpecifications = (specs: { [key: string]: any }, level = 0): JSX.Element => {
+  return (
+    <div className={`space-y-2 ${level > 0 ? 'ml-4 border-l-2 border-gray-200 pl-4' : ''}`}>
+      {Object.entries(specs).map(([key, value]) => {
+        // If value has a name and value (e.g., special structure)
+        if (typeof value === 'object' && value !== null && 'name' in value && 'value' in value) {
+          return (
+            <div key={key} className="specification-group">
+              <h4 className="font-medium text-gray-900 text-sm">{value.name}</h4>
+              <p className="text-gray-600 text-sm mt-1">{value.value}</p>
+            </div>
+          );
+        }
+
+        // Simple string/number value
+        if (typeof value === 'string' || typeof value === 'number') {
+          return (
+            <div key={key} className="specification-group">
+              <h4 className={`font-medium text-gray-900 ${level === 0 ? 'text-sm' : 'text-xs'}`}>
+                {formatKey(key)}
+              </h4>
               <p className="text-gray-600 text-sm mt-1">{value}</p>
-            ) : Array.isArray(value) ? (
+            </div>
+          );
+        }
+
+        // If it's an array, render list
+        if (Array.isArray(value)) {
+          return (
+            <div key={key} className="specification-group">
+              <h4 className="font-medium text-gray-900 text-sm">{formatKey(key)}</h4>
               <ul className="list-disc list-inside mt-1 space-y-1 text-sm text-gray-600">
                 {value.map((item, index) => (
-                  <li key={index}>{typeof item === 'object' ? JSON.stringify(item) : item}</li>
+                  <li key={index}>
+                    {typeof item === 'object' ? JSON.stringify(item) : item}
+                  </li>
                 ))}
               </ul>
-            ) : (
+            </div>
+          );
+        }
+
+        // Recursively render nested specs
+        if (typeof value === 'object' && value !== null) {
+          return (
+            <div key={key} className="specification-group">
+              <h4 className="font-medium text-gray-900 text-sm">{formatKey(key)}</h4>
               <div className="mt-1">{renderSpecifications(value, level + 1)}</div>
-            )}
-          </div>
-        ))}
-      </div>
-    );
-  };
+            </div>
+          );
+        }
+
+        return null;
+      })}
+    </div>
+  );
+};
 
   const renderProductInfo = () => {
     if (type === 'instrument') {
@@ -236,14 +269,14 @@ const Checkout: React.FC = () => {
         </div>
 
         <div className="mt-6 border-t border-gray-200 pt-6">
-          {machine.metadata.description && (
+          {/* {machine.metadata.description && (
             <>
               <h4 className="text-sm font-medium text-gray-900 mb-4">Description</h4>
               <p className="text-sm text-gray-600 mb-6">{machine.metadata.description}</p>
             </>
-          )}
+          )} */}
 
-          {machine.metadata.features && machine.metadata.features.length > 0 && (
+          {/* {machine.metadata.features && machine.metadata.features.length > 0 && (
             <>
               <h4 className="text-sm font-medium text-gray-900 mb-4">Key Features</h4>
               <ul className="list-disc list-inside space-y-2 text-sm text-gray-600 mb-6">
@@ -252,7 +285,7 @@ const Checkout: React.FC = () => {
                 ))}
               </ul>
             </>
-          )}
+          )} */}
 
           {machine.metadata.specifications && Object.keys(machine.metadata.specifications).length > 0 && (
             <>
